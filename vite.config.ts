@@ -1,10 +1,12 @@
 import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import babel from '@rolldown/plugin-babel';
 import { defineConfig } from 'vitest/config';
+import tailwindcss from '@tailwindcss/vite';
+import * as path from 'node:path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
+  plugins: [react(), babel({ presets: [reactCompilerPreset()] }), tailwindcss()],
   test: {
     environment: 'jsdom',
     globals: true,
@@ -12,6 +14,15 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov'],
+      exclude: [
+        // don't include shadcn components
+        'src/components/ui/**',
+      ],
+    },
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
     },
   },
 });
