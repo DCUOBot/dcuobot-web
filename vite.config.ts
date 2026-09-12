@@ -14,6 +14,10 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov'],
+      exclude: [
+        // don't include shadcn components
+        'src/app/components/ui/**',
+      ],
     },
   },
   resolve: {
