@@ -16,7 +16,7 @@ export default defineConfig({
       reporter: ['text', 'lcov'],
       exclude: [
         // don't include shadcn components
-        'src/app/components/ui/**',
+        'src/components/ui/**',
       ],
     },
   },
