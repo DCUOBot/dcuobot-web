@@ -42,6 +42,16 @@ const de: typeof en = {
       label: 'Menü',
     },
   },
+  footer: {
+    copyright: '&copy; DCUOBot {{currentYear}}. Alle Rechte vorbehalten.',
+    disclaimer1:
+      'Diese App steht in keiner Verbindung zu DC Universe Online und wird davon weder ' +
+      'unterstützt noch anderweitig assoziiert.',
+    disclaimer2: 'Alle Marken sind Eigentum ihrer jeweiligen Inhaber.',
+    privacy: 'Datenschutz',
+    discord: 'Discord',
+    languageAriaLabel: 'Sprache wählen',
+  },
 };
 
 export default de;

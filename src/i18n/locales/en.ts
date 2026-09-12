@@ -40,6 +40,15 @@ const en = {
       label: 'Menu',
     },
   },
+  footer: {
+    copyright: 'DCUOBot {{currentYear}}. All rights reserved.',
+    disclaimer1:
+      'This app is not affiliated with, endorsed by, or connected to DC Universe Online.',
+    disclaimer2: 'All trademarks are the property of their respective owners.',
+    privacy: 'Privacy',
+    discord: 'Discord',
+    languageAriaLabel: 'Select language',
+  },
 };
 
 export default en;
