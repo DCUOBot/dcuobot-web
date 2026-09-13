@@ -17,6 +17,9 @@ void i18n
     interpolation: {
       escapeValue: false,
     },
+    react: {
+      bindI18nStore: 'added removed',
+    },
   });
 
 export default i18n;
