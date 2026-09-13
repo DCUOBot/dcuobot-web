@@ -1,23 +1,42 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ThemeProvider, useTheme } from './ThemeProvider';
 
-function mockMatchMedia(matches: boolean) {
+function mockMatchMedia(initialMatches: boolean) {
+  let matches = initialMatches;
+  const listeners = new Set<() => void>();
+
+  const mediaQueryList = {
+    get matches() {
+      return matches;
+    },
+    media: '(prefers-color-scheme: dark)',
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn((_event: string, listener: () => void) => {
+      listeners.add(listener);
+    }),
+    removeEventListener: vi.fn((_event: string, listener: () => void) => {
+      listeners.delete(listener);
+    }),
+    dispatchEvent: vi.fn(),
+  };
+
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     configurable: true,
-    value: vi.fn().mockImplementation((query: string) => ({
-      matches,
-      media: query,
-      onchange: null,
-      addListener: vi.fn(),
-      removeListener: vi.fn(),
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn(),
-    })),
+    value: vi.fn().mockReturnValue(mediaQueryList),
   });
+
+  return {
+    mediaQueryList,
+    setMatches(next: boolean) {
+      matches = next;
+      listeners.forEach((listener) => listener());
+    },
+  };
 }
 
 function ThemeConsumer() {
@@ -160,5 +179,45 @@ describe('ThemeProvider', () => {
     render(<ThemeConsumer />);
 
     expect(screen.getByTestId('current-theme')).toHaveTextContent('system');
+  });
+
+  it('reacts to OS color scheme changes while the theme is system', () => {
+    const matchMedia = mockMatchMedia(false);
+
+    render(
+      <ThemeProvider>
+        <ThemeConsumer />
+      </ThemeProvider>,
+    );
+
+    expect(document.documentElement.classList.contains('light')).toBe(true);
+
+    act(() => {
+      matchMedia.setMatches(true);
+    });
+
+    expect(document.documentElement.classList.contains('dark')).toBe(true);
+    expect(document.documentElement.classList.contains('light')).toBe(false);
+  });
+
+  it('ignores OS color scheme changes once the theme is no longer system', async () => {
+    const matchMedia = mockMatchMedia(false);
+    const user = userEvent.setup();
+
+    render(
+      <ThemeProvider>
+        <ThemeConsumer />
+      </ThemeProvider>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Set dark' }));
+    expect(matchMedia.mediaQueryList.removeEventListener).toHaveBeenCalled();
+
+    act(() => {
+      matchMedia.setMatches(true);
+    });
+
+    expect(document.documentElement.classList.contains('dark')).toBe(true);
+    expect(document.documentElement.classList.contains('light')).toBe(false);
   });
 });
