@@ -39,6 +39,12 @@ const en = {
       ariaLabel: 'Toggle menu',
       label: 'Menu',
     },
+    themeToggle: {
+      ariaLabel: 'Toggle theme',
+      light: 'Light',
+      dark: 'Dark',
+      system: 'System',
+    },
   },
   footer: {
     copyright: 'DCUOBot {{currentYear}}. All rights reserved.',

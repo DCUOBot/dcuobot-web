@@ -15,6 +15,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 import { useState } from 'react';
+import ThemeToggle from '@/components/layout/header/ThemeToggle';
 
 type NavLink = {
   i18n: string;
@@ -57,7 +58,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-3 px-6 py-3 lg:h-16 lg:flex-nowrap lg:py-0">
         <Link
           to="/"
-          className="flex items-center gap-2 font-semibold"
+          className="order-1 flex items-center gap-2 font-semibold"
         >
           <div className="relative">
             <img
@@ -114,6 +115,10 @@ export default function Header() {
 
         <Button className="order-5 hidden lg:inline-flex">{t('header.addBot')}</Button>
 
+        <div className="order-2 ml-auto lg:order-6 lg:ml-0">
+          <ThemeToggle />
+        </div>
+
         <Drawer
           swipeDirection="right"
           open={mobileMenuOpen}
@@ -124,7 +129,7 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="order-2 ml-auto lg:hidden"
+                className="order-3 lg:hidden"
                 aria-label={t('header.menu.ariaLabel')}
               >
                 <Menu className="size-5" />

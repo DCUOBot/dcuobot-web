@@ -41,6 +41,12 @@ const de: typeof en = {
       ariaLabel: 'Menü umschalten',
       label: 'Menü',
     },
+    themeToggle: {
+      ariaLabel: 'Thema umschalten',
+      light: 'Hell',
+      dark: 'Dunkel',
+      system: 'System',
+    },
   },
   footer: {
     copyright: '&copy; DCUOBot {{currentYear}}. Alle Rechte vorbehalten.',

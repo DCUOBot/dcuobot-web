@@ -75,6 +75,19 @@ describe('Header', () => {
     );
     expect(screen.getByRole('link', { name: 'Commands' })).toHaveAttribute('href', '/commands');
     expect(screen.getByRole('button', { name: 'Add DCUOBot' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Toggle theme' })).toBeInTheDocument();
+  });
+
+  it('opens the theme toggle menu with light, dark and system options', async () => {
+    const user = userEvent.setup();
+    renderHeader();
+    await screen.findByTestId('route-marker');
+
+    await user.click(screen.getByRole('button', { name: 'Toggle theme' }));
+
+    expect(await screen.findByRole('menuitem', { name: 'Light' })).toBeInTheDocument();
+    expect(screen.getByRole('menuitem', { name: 'Dark' })).toBeInTheDocument();
+    expect(screen.getByRole('menuitem', { name: 'System' })).toBeInTheDocument();
   });
 
   it('navigates to the characters ranking page from the rankings dropdown', async () => {
