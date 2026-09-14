@@ -5,14 +5,23 @@ import HeaderSearch from './HeaderSearch';
 import '@/i18n';
 
 const mockNavigate = vi.fn();
+let mockPathname = '/';
+let mockRouteSearch: { worldId?: number; query?: string } = {};
 
 vi.mock('@tanstack/react-router', () => ({
   useNavigate: () => mockNavigate,
+  useLocation: (options?: { select?: (location: { pathname: string }) => unknown }) => {
+    const location = { pathname: mockPathname };
+    return options?.select ? options.select(location) : location;
+  },
+  useSearch: () => mockRouteSearch,
 }));
 
 describe('HeaderSearch', () => {
   beforeEach(() => {
     mockNavigate.mockClear();
+    mockPathname = '/';
+    mockRouteSearch = {};
   });
 
   it('renders the search type, server and query controls with defaults', () => {
@@ -80,5 +89,40 @@ describe('HeaderSearch', () => {
     await user.keyboard('{Enter}');
 
     expect(mockNavigate).not.toHaveBeenCalled();
+  });
+
+  it('populates the form from the current route search when viewing a character page', () => {
+    mockPathname = '/characters';
+    mockRouteSearch = { worldId: 4, query: 'SomeCharacter' };
+
+    render(<HeaderSearch />);
+
+    expect(screen.getByRole('button', { name: /Type$/ })).toHaveTextContent('Character');
+    expect(screen.getByRole('button', { name: /Server$/ })).toHaveTextContent('EUPC/PS');
+    expect(screen.getByPlaceholderText('Lookup character or league...')).toHaveValue(
+      'SomeCharacter',
+    );
+  });
+
+  it('populates the form from the current route search when viewing a league page', () => {
+    mockPathname = '/leagues';
+    mockRouteSearch = { worldId: 11, query: 'SomeLeague' };
+
+    render(<HeaderSearch />);
+
+    expect(screen.getByRole('button', { name: /Type$/ })).toHaveTextContent('League');
+    expect(screen.getByRole('button', { name: /Server$/ })).toHaveTextContent('EU Switch');
+    expect(screen.getByPlaceholderText('Lookup character or league...')).toHaveValue('SomeLeague');
+  });
+
+  it('keeps the default form values when the route search is missing a query or worldId', () => {
+    mockPathname = '/characters';
+    mockRouteSearch = { worldId: 4 };
+
+    render(<HeaderSearch />);
+
+    expect(screen.getByRole('button', { name: /Type$/ })).toHaveTextContent('Character');
+    expect(screen.getByRole('button', { name: /Server$/ })).toHaveTextContent('USPC/PS');
+    expect(screen.getByPlaceholderText('Lookup character or league...')).toHaveValue('');
   });
 });

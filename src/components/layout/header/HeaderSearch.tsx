@@ -11,7 +11,8 @@ import {
 } from '@/components/ui/select';
 import { z } from 'zod';
 import { Input } from '@/components/ui/input';
-import { useNavigate } from '@tanstack/react-router';
+import { useLocation, useNavigate, useSearch } from '@tanstack/react-router';
+import { useEffect } from 'react';
 
 const searchSchema = z.object({
   searchType: z.enum(['character', 'league']),
@@ -25,7 +26,13 @@ export default function HeaderSearch() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { control, register, handleSubmit } = useForm<SearchFormValues>({
+  const pathname = useLocation({ select: (location) => location.pathname });
+  const { worldId: routeWorldId, query: routeQuery } = useSearch({ strict: false }) as {
+    worldId?: number;
+    query?: string;
+  };
+
+  const { control, register, handleSubmit, setValue } = useForm<SearchFormValues>({
     resolver: zodResolver(searchSchema),
     defaultValues: {
       searchType: 'character',
@@ -33,6 +40,16 @@ export default function HeaderSearch() {
       query: '',
     },
   });
+
+  useEffect(() => {
+    if (!routeWorldId || !routeQuery) {
+      return;
+    }
+
+    setValue('searchType', pathname.startsWith('/characters') ? 'character' : 'league');
+    setValue('server', String(routeWorldId) as SearchFormValues['server']);
+    setValue('query', routeQuery);
+  }, [pathname, routeWorldId, routeQuery, setValue]);
 
   const onSubmit = (values: SearchFormValues) => {
     void navigate({
