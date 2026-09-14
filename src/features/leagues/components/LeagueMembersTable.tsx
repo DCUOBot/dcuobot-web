@@ -62,6 +62,20 @@ function LocaleNumberCell({ value, locale }: { value: number; locale: string }) 
   return <span>{value.toLocaleString(locale)}</span>;
 }
 
+type NumberColumnKey = 'skill_points' | 'combat_rating' | 'pvp_combat_rating';
+
+function createNumberColumn(key: NumberColumnKey, label: string, locale: string) {
+  return columnHelper.accessor(key, {
+    header: ({ column }) => <SortableColumnHeader column={column}>{label}</SortableColumnHeader>,
+    cell: ({ row }) => (
+      <LocaleNumberCell
+        value={Number(row.getValue(key))}
+        locale={locale}
+      />
+    ),
+  });
+}
+
 export default function LeagueMembersTable({ data }: Props) {
   const { t, i18n } = useTranslation('leagues');
   const [sorting, setSorting] = useState<SortingState>([{ id: 'rank', desc: false }]);
@@ -100,45 +114,9 @@ export default function LeagueMembersTable({ data }: Props) {
         </SortableColumnHeader>
       ),
     }),
-    columnHelper.accessor('skill_points', {
-      header: ({ column }) => (
-        <SortableColumnHeader column={column}>
-          {t('league.details.skillPoints')}
-        </SortableColumnHeader>
-      ),
-      cell: ({ row }) => (
-        <LocaleNumberCell
-          value={Number(row.getValue('skill_points'))}
-          locale={i18n.language}
-        />
-      ),
-    }),
-    columnHelper.accessor('combat_rating', {
-      header: ({ column }) => (
-        <SortableColumnHeader column={column}>
-          {t('league.details.combatRating')}
-        </SortableColumnHeader>
-      ),
-      cell: ({ row }) => (
-        <LocaleNumberCell
-          value={Number(row.getValue('combat_rating'))}
-          locale={i18n.language}
-        />
-      ),
-    }),
-    columnHelper.accessor('pvp_combat_rating', {
-      header: ({ column }) => (
-        <SortableColumnHeader column={column}>
-          {t('league.details.pvpCombatRating')}
-        </SortableColumnHeader>
-      ),
-      cell: ({ row }) => (
-        <LocaleNumberCell
-          value={Number(row.getValue('pvp_combat_rating'))}
-          locale={i18n.language}
-        />
-      ),
-    }),
+    createNumberColumn('skill_points', t('league.details.skillPoints'), i18n.language),
+    createNumberColumn('combat_rating', t('league.details.combatRating'), i18n.language),
+    createNumberColumn('pvp_combat_rating', t('league.details.pvpCombatRating'), i18n.language),
   ]);
 
   const table = useTable({
