@@ -46,14 +46,14 @@ export default function HeaderSearch() {
       return;
     }
 
-    setValue('searchType', pathname.startsWith('/characters') ? 'character' : 'league');
+    setValue('searchType', pathname.startsWith('/leagues') ? 'league' : 'character');
     setValue('server', String(routeWorldId) as SearchFormValues['server']);
     setValue('query', routeQuery);
   }, [pathname, routeWorldId, routeQuery, setValue]);
 
   const onSubmit = (values: SearchFormValues) => {
     void navigate({
-      to: values.searchType === 'character' ? '/characters' : '/leagues',
+      to: values.searchType === 'league' ? '/leagues' : '/characters',
       search: {
         worldId: Number(values.server),
         query: values.query.trim(),
