@@ -1,4 +1,4 @@
-import type { Character } from '@/features/characters/character';
+import type { Character } from '@/features/characters/models/character';
 import { Card, CardContent } from '@/components/ui/card';
 import { useTranslation } from 'react-i18next';
 import { formatWorldId } from '@/lib/world-id-format';

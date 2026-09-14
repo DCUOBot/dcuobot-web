@@ -3,7 +3,7 @@ import { afterEach, beforeAll, describe, expect, it } from 'vitest';
 import CharacterStats from './CharacterStats';
 import charactersEn from '@/features/characters/locales/en';
 import charactersDe from '@/features/characters/locales/de';
-import { createCharacter } from '@/features/characters/character.fixture';
+import { createCharacter } from '@/features/characters/fixtures/character.fixture';
 import i18n from '@/i18n';
 
 describe('CharacterStats', () => {

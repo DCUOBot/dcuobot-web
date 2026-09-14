@@ -22,6 +22,7 @@ const en = {
       toughness: 'Toughness',
       combatAlly: 'Combat Ally',
       supportAlly: 'Support Ally',
+      notFound: 'Character not found.',
     },
   },
 };

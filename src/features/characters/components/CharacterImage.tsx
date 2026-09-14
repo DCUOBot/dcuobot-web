@@ -1,4 +1,4 @@
-import type { Character } from '@/features/characters/character';
+import type { Character } from '@/features/characters/models/character';
 import { useTranslation } from 'react-i18next';
 import ProtectedImage from '@/components/ProtectedImage';
 

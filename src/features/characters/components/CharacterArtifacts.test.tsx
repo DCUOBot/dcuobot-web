@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import CharacterArtifacts from './CharacterArtifacts';
-import { createCharacter } from '@/features/characters/character.fixture';
+import { createCharacter } from '@/features/characters/fixtures/character.fixture';
 
 describe('CharacterArtifacts', () => {
   it('renders an image for each equipped artifact with the dcuo.bot host stripped', () => {

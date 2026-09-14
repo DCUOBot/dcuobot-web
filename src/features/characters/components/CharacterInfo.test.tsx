@@ -10,9 +10,9 @@ import {
 } from '@tanstack/react-router';
 import CharacterInfo from './CharacterInfo';
 import charactersEn from '@/features/characters/locales/en';
-import { createCharacter } from '@/features/characters/character.fixture';
+import { createCharacter } from '@/features/characters/fixtures/character.fixture';
 import i18n from '@/i18n';
-import type { Character } from '@/features/characters/character';
+import type { Character } from '@/features/characters/models/character';
 
 function routeMarker(path: string) {
   return () => <div data-testid="route-marker">{path}</div>;

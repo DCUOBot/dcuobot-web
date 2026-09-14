@@ -12,7 +12,7 @@ import {
 } from '@tanstack/react-router';
 import CharacterDetails from './CharacterDetails';
 import charactersEn from '@/features/characters/locales/en';
-import { createCharacter } from '@/features/characters/character.fixture';
+import { createCharacter } from '@/features/characters/fixtures/character.fixture';
 import i18n from '@/i18n';
 import { getCharacter } from '@/features/characters/api';
 

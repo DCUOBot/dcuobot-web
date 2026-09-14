@@ -24,6 +24,7 @@ const de: typeof en = {
       toughness: 'Zähigkeit',
       combatAlly: 'Kampfverbündeter',
       supportAlly: 'Unterstützungsverbündeter',
+      notFound: 'Charakter nicht gefunden.',
     },
   },
 };

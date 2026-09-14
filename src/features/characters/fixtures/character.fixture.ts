@@ -1,4 +1,4 @@
-import type { Character } from '@/features/characters/character';
+import type { Character } from '@/features/characters/models/character';
 
 export function createCharacter(overrides: Partial<Character> = {}): Character {
   return {

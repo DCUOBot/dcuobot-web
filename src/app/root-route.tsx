@@ -3,6 +3,7 @@ import Header from '@/components/layout/header/Header.tsx';
 import Footer from '@/components/layout/footer/Footer';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import type { QueryClient } from '@tanstack/react-query';
+import { Toaster } from '@/components/ui/sonner';
 
 type RouterContext = {
   queryClient: QueryClient;
@@ -20,6 +21,7 @@ export const rootRoute = createRootRouteWithContext<RouterContext>()({
           <Outlet />
         </main>
         <Footer />
+        <Toaster />
       </div>
     </ThemeProvider>
   ),

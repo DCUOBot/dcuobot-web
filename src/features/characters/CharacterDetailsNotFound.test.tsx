@@ -1,0 +1,55 @@
+import { render } from '@testing-library/react';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+import { toast } from 'sonner';
+import CharacterDetailsNotFound from './CharacterDetailsNotFound';
+import charactersEn from '@/features/characters/locales/en';
+import i18n from '@/i18n';
+
+const mockNavigate = vi.fn();
+
+vi.mock('@tanstack/react-router', () => ({
+  useNavigate: () => mockNavigate,
+}));
+
+vi.mock('sonner', () => ({
+  toast: {
+    error: vi.fn(),
+  },
+}));
+
+describe('CharacterDetailsNotFound', () => {
+  beforeAll(() => {
+    i18n.addResourceBundle('en', 'characters', charactersEn);
+  });
+
+  afterEach(async () => {
+    await i18n.changeLanguage('en');
+    mockNavigate.mockClear();
+    vi.mocked(toast.error).mockClear();
+  });
+
+  it('shows a not found toast and navigates back to the home page', async () => {
+    render(<CharacterDetailsNotFound />);
+
+    expect(toast.error).toHaveBeenCalledTimes(1);
+    expect(toast.error).toHaveBeenCalledWith('Character not found.', {
+      position: 'bottom-center',
+    });
+    expect(mockNavigate).toHaveBeenCalledTimes(1);
+    expect(mockNavigate).toHaveBeenCalledWith({ to: '/' });
+  });
+
+  it('renders nothing', () => {
+    const { container } = render(<CharacterDetailsNotFound />);
+
+    expect(container).toBeEmptyDOMElement();
+  });
+
+  it('does not show the toast more than once when re-rendered', () => {
+    const { rerender } = render(<CharacterDetailsNotFound />);
+    rerender(<CharacterDetailsNotFound />);
+
+    expect(toast.error).toHaveBeenCalledTimes(1);
+    expect(mockNavigate).toHaveBeenCalledTimes(1);
+  });
+});

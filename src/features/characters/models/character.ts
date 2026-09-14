@@ -1,5 +1,5 @@
-import type { Artifact } from '@/features/characters/artifact';
-import type { Ally } from '@/features/characters/ally';
+import type { Artifact } from '@/features/characters/models/artifact';
+import type { Ally } from '@/features/characters/models/ally';
 
 export interface Character {
   name: string;

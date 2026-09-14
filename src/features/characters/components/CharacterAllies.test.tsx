@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { afterEach, beforeAll, describe, expect, it } from 'vitest';
 import CharacterAllies from './CharacterAllies';
 import charactersEn from '@/features/characters/locales/en';
-import { createCharacter } from '@/features/characters/character.fixture';
+import { createCharacter } from '@/features/characters/fixtures/character.fixture';
 import i18n from '@/i18n';
 
 describe('CharacterAllies', () => {

@@ -1,4 +1,4 @@
-import type { Character } from '@/features/characters/character';
+import type { Character } from '@/features/characters/models/character';
 import { httpClient } from '@/lib/http-client';
 
 export async function getCharacter(name: string, worldId: number): Promise<Character> {

@@ -1,4 +1,4 @@
-import type { Character } from '@/features/characters/character';
+import type { Character } from '@/features/characters/models/character';
 import { Tooltip, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from 'react-aria-components';
 import ProtectedImage from '@/components/ProtectedImage';
