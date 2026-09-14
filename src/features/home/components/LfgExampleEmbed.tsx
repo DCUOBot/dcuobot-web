@@ -1,5 +1,5 @@
 import EmbedBotHeader from '@/features/home/components/EmbedBotHeader';
-import ProtectedImage from '@/features/home/components/ProtectedImage';
+import ProtectedImage from '@/components/ProtectedImage';
 
 const roles = [
   { icon: '/assets/images/roles/tank.png', alt: 'Tank', label: 'Tank (0/4)', value: '---' },

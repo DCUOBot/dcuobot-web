@@ -1,5 +1,5 @@
 import logo from '@/assets/branding/logo-32.webp';
-import ProtectedImage from '@/features/home/components/ProtectedImage';
+import ProtectedImage from '@/components/ProtectedImage';
 
 export default function EmbedBotHeader() {
   return (

@@ -6,5 +6,6 @@ export const characterQueries = {
     queryOptions({
       queryKey: ['character', name, worldId],
       queryFn: () => getCharacter(name, worldId),
+      staleTime: 'static',
     }),
 };

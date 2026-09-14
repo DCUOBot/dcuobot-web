@@ -25,17 +25,14 @@ export const characterDetailsRoute = createRoute({
     worldId: search.worldId ? Number(search.worldId) : undefined,
     query: search.query ? (search.query as string) : undefined,
   }),
-  loaderDeps: ({ search }) => ({ search }),
-  loader: ({ context: { queryClient }, deps: { search } }) => {
+  beforeLoad: ({ search }) => {
     if (!search.query || !search.worldId) {
       throw redirect({ to: '/' });
     }
-
-    return queryClient.query({
-      ...characterQueries.getCharacter(search.query, search.worldId),
-      staleTime: 'static',
-    });
   },
+  loaderDeps: ({ search }) => ({ search }),
+  loader: ({ context: { queryClient }, deps: { search } }) =>
+    queryClient.query(characterQueries.getCharacter(search.query!, search.worldId!)),
   component: lazyRouteComponent(() => import('@/features/characters/CharacterDetails')),
 });
 
