@@ -32,6 +32,7 @@ const de: typeof en = {
         placeholder: 'Charakter oder Liga suchen...',
         ariaLabel: 'Suchanfrage',
       },
+      submitAriaLabel: 'Suchen',
     },
     serverStatus: 'Serverstatus',
     rankings: {

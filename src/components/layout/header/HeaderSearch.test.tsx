@@ -91,6 +91,39 @@ describe('HeaderSearch', () => {
     expect(mockNavigate).not.toHaveBeenCalled();
   });
 
+  it('renders an accessible search submit button', () => {
+    render(<HeaderSearch />);
+
+    expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument();
+  });
+
+  it('navigates when the search button is clicked', async () => {
+    const user = userEvent.setup();
+    render(<HeaderSearch />);
+
+    await user.type(screen.getByPlaceholderText('Lookup character or league...'), 'SomeCharacter');
+    await user.click(screen.getByRole('button', { name: 'Search' }));
+
+    expect(mockNavigate).toHaveBeenCalledTimes(1);
+    expect(mockNavigate).toHaveBeenCalledWith({
+      to: '/characters',
+      search: { worldId: 2, query: 'SomeCharacter' },
+    });
+  });
+
+  it('blurs the focused element on submit', async () => {
+    const user = userEvent.setup();
+    render(<HeaderSearch />);
+
+    const input = screen.getByPlaceholderText('Lookup character or league...');
+    await user.type(input, 'SomeCharacter');
+    expect(input).toHaveFocus();
+
+    await user.keyboard('{Enter}');
+
+    expect(input).not.toHaveFocus();
+  });
+
   it('populates the form from the current route search when viewing a character page', () => {
     mockPathname = '/characters';
     mockRouteSearch = { worldId: 4, query: 'SomeCharacter' };

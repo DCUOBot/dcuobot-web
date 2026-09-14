@@ -13,6 +13,8 @@ import { z } from 'zod';
 import { Input } from '@/components/ui/input';
 import { useLocation, useNavigate, useSearch } from '@tanstack/react-router';
 import { useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Search } from 'lucide-react';
 
 const searchSchema = z.object({
   searchType: z.enum(['character', 'league']),
@@ -52,6 +54,8 @@ export default function HeaderSearch() {
   }, [pathname, routeWorldId, routeQuery, setValue]);
 
   const onSubmit = (values: SearchFormValues) => {
+    (document.activeElement as HTMLElement)?.blur();
+
     void navigate({
       to: values.searchType === 'league' ? '/leagues' : '/characters',
       search: {
@@ -64,7 +68,7 @@ export default function HeaderSearch() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-1 items-center rounded-full border bg-muted/40 px-2"
+      className="flex flex-1 items-center rounded-full border bg-muted/40"
     >
       <Controller
         control={control}
@@ -123,6 +127,15 @@ export default function HeaderSearch() {
         className="flex-1 border-0 bg-transparent shadow-none focus-visible:ring-0"
         {...register('query')}
       />
+
+      <Button
+        variant="ghost"
+        size="icon"
+        type="submit"
+        aria-label={t('header.search.submitAriaLabel')}
+      >
+        <Search size="4" />
+      </Button>
     </form>
   );
 }
