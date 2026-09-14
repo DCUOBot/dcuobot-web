@@ -27,6 +27,7 @@ const en = {
         placeholder: 'Lookup character or league...',
         ariaLabel: 'Search query',
       },
+      submitAriaLabel: 'Search',
     },
     serverStatus: 'Server Status',
     rankings: {
