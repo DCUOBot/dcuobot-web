@@ -2,8 +2,13 @@ import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
 import { toast } from 'sonner';
+import { isAxiosError } from 'axios';
 
-export default function CharacterDetailsNotFound() {
+type Props = {
+  error: unknown;
+};
+
+export default function CharacterDetailsError({ error }: Props) {
   const navigate = useNavigate();
   const { t } = useTranslation('characters');
   const hasShownToast = useRef(false);
@@ -15,9 +20,17 @@ export default function CharacterDetailsNotFound() {
 
     hasShownToast.current = true;
 
-    toast.error(t('character.details.notFound'), {
-      position: 'bottom-center',
-    });
+    const status = isAxiosError(error) ? error.response?.status : undefined;
+
+    if (status === 404) {
+      toast.error(t('character.details.notFound'), {
+        position: 'bottom-center',
+      });
+    } else {
+      toast.error(t('common:common.error'), {
+        position: 'bottom-center',
+      });
+    }
     void navigate({ to: '/' });
   }, [navigate, t]);
 

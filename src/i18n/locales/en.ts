@@ -1,4 +1,7 @@
 const en = {
+  common: {
+    error: 'An error occurred, please try again later.',
+  },
   header: {
     appName: 'DCUOBot',
     logoAlt: 'DCUOBot Logo',
