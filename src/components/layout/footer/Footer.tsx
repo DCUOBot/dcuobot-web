@@ -11,7 +11,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full border-t border-border/40 bg-background mt-20 sm:mt-36">
-      <div className="mx-auto flex max-w-7xl flex-col items-center lg:flex-row lg:justify-between gap-x-6 gap-y-3 px-6 py-3 text-muted-foreground text-sm">
+      <div className="mx-auto flex max-w-7xl flex-col items-center lg:flex-row lg:justify-between gap-x-6 gap-y-3 px-4 py-3 text-muted-foreground text-sm">
         <div className="text-center lg:text-start">
           <p>&copy;&nbsp;{t('footer.copyright', { currentYear })}</p>
           <p className="text-xs mt-1">
