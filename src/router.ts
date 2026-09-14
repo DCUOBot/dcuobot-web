@@ -6,6 +6,9 @@ import { serverStatusRoutes } from '@/features/server-status/server-status.route
 import { charactersRoutes } from '@/features/characters/characters.routes';
 import { leaguesRoutes } from '@/features/leagues/leagues.routes';
 import { privacyRoutes } from '@/features/privacy/privacy.routes';
+import { QueryClient } from '@tanstack/react-query';
+
+export const queryClient = new QueryClient();
 
 const routeTree = rootRoute.addChildren([
   homeRoutes,
@@ -16,7 +19,10 @@ const routeTree = rootRoute.addChildren([
   privacyRoutes,
 ]);
 
-export const router = createRouter({ routeTree });
+export const router = createRouter({
+  routeTree,
+  context: { queryClient },
+});
 
 declare module '@tanstack/react-router' {
   interface Register {

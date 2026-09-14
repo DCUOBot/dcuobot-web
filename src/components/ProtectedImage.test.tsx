@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import ProtectedImage from './ProtectedImage';
+import ProtectedImage from '@/components/ProtectedImage';
 
 describe('ProtectedImage', () => {
   it('renders the image with the given attributes and lazy loading', () => {

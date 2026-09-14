@@ -1,7 +1,7 @@
 import obsidianChill from '@/assets/images/embed-examples/obsidianchill.png';
 import EmbedBotHeader from '@/features/home/components/EmbedBotHeader';
 import EmbedFadeOverlay from '@/features/home/components/EmbedFadeOverlay';
-import ProtectedImage from '@/features/home/components/ProtectedImage';
+import ProtectedImage from '@/components/ProtectedImage';
 
 const basicStats = [
   { icon: '📈', label: 'Skill Points', value: '825' },

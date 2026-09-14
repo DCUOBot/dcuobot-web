@@ -1,6 +1,6 @@
 import EmbedBotHeader from '@/features/home/components/EmbedBotHeader';
 import EmbedFadeOverlay from '@/features/home/components/EmbedFadeOverlay';
-import ProtectedImage from '@/features/home/components/ProtectedImage';
+import ProtectedImage from '@/components/ProtectedImage';
 
 export default function LeagueExampleEmbed() {
   return (
