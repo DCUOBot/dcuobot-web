@@ -1,6 +1,8 @@
 import { createRoute, lazyRouteComponent } from '@tanstack/react-router';
 import { rootRoute } from '@/app/root-route';
 import { loadFeatureLocale } from '@/i18n/loadFeatureLocale';
+import { leagueQueries } from '@/features/leagues/queries';
+import { requireEntitySearch, validateEntitySearch } from '@/lib/entity-search-route';
 
 export const leaguesRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -15,6 +17,12 @@ export const leaguesRoute = createRoute({
 export const leagueDetailsRoute = createRoute({
   getParentRoute: () => leaguesRoute,
   path: '/',
+  validateSearch: validateEntitySearch,
+  beforeLoad: requireEntitySearch,
+  loaderDeps: ({ search }) => ({ search }),
+  loader: ({ context: { queryClient }, deps: { search } }) =>
+    queryClient.query(leagueQueries.getLeague(search.query!, search.worldId!)),
+  errorComponent: lazyRouteComponent(() => import('@/features/leagues/LeagueDetailsError')),
   component: lazyRouteComponent(() => import('@/features/leagues/LeagueDetails')),
 });
 

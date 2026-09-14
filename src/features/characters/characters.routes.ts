@@ -1,12 +1,8 @@
-import { createRoute, lazyRouteComponent, redirect } from '@tanstack/react-router';
+import { createRoute, lazyRouteComponent } from '@tanstack/react-router';
 import { rootRoute } from '@/app/root-route';
 import { loadFeatureLocale } from '@/i18n/loadFeatureLocale';
 import { characterQueries } from '@/features/characters/queries';
-
-type CharacterSearch = {
-  worldId?: number;
-  query?: string;
-};
+import { requireEntitySearch, validateEntitySearch } from '@/lib/entity-search-route';
 
 export const charactersRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -21,15 +17,8 @@ export const charactersRoute = createRoute({
 export const characterDetailsRoute = createRoute({
   getParentRoute: () => charactersRoute,
   path: '/',
-  validateSearch: (search: Record<string, unknown>): CharacterSearch => ({
-    worldId: search.worldId ? Number(search.worldId) : undefined,
-    query: search.query ? (search.query as string) : undefined,
-  }),
-  beforeLoad: ({ search }) => {
-    if (!search.query || !search.worldId) {
-      throw redirect({ to: '/' });
-    }
-  },
+  validateSearch: validateEntitySearch,
+  beforeLoad: requireEntitySearch,
   loaderDeps: ({ search }) => ({ search }),
   loader: ({ context: { queryClient }, deps: { search } }) =>
     queryClient.query(characterQueries.getCharacter(search.query!, search.worldId!)),
