@@ -1,9 +1,14 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import Header from '@/components/layout/header/Header.tsx';
 import Footer from '@/components/layout/footer/Footer';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import type { QueryClient } from '@tanstack/react-query';
 
-export const rootRoute = createRootRoute({
+type RouterContext = {
+  queryClient: QueryClient;
+};
+
+export const rootRoute = createRootRouteWithContext<RouterContext>()({
   component: () => (
     <ThemeProvider
       defaultTheme="system"
