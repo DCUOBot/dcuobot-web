@@ -45,6 +45,7 @@ const en = {
     },
     themeToggle: {
       ariaLabel: 'Toggle theme',
+      tooltip: 'Theme',
       light: 'Light',
       dark: 'Dark',
       system: 'System',

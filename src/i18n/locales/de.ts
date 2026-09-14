@@ -46,7 +46,8 @@ const de: typeof en = {
       label: 'Menü',
     },
     themeToggle: {
-      ariaLabel: 'Thema umschalten',
+      ariaLabel: 'Farbmodus umschalten',
+      tooltip: 'Farbmodus',
       light: 'Hell',
       dark: 'Dunkel',
       system: 'System',

@@ -3,6 +3,7 @@ import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from '@/component
 import { Button } from '@/components/ui/button';
 import { Moon, Sun } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Tooltip, TooltipTrigger } from '@/components/ui/tooltip';
 
 export default function ThemeToggle() {
   const { setTheme } = useTheme();
@@ -10,14 +11,17 @@ export default function ThemeToggle() {
 
   return (
     <DropdownMenuTrigger>
-      <Button
-        variant="outline"
-        size="icon"
-        aria-label={t('header.themeToggle.ariaLabel')}
-      >
-        <Sun className="size-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-        <Moon className="absolute size-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-      </Button>
+      <TooltipTrigger>
+        <Button
+          variant="outline"
+          size="icon"
+          aria-label={t('header.themeToggle.ariaLabel')}
+        >
+          <Sun className="size-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+          <Moon className="absolute size-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+        </Button>
+        <Tooltip>{t('header.themeToggle.tooltip')}</Tooltip>
+      </TooltipTrigger>
       <DropdownMenu placement="bottom end">
         <DropdownMenuItem onClick={() => setTheme('light')}>
           {t('header.themeToggle.light')}
