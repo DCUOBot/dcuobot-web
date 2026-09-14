@@ -1,6 +1,9 @@
 import type en from '@/i18n/locales/en';
 
 const de: typeof en = {
+  common: {
+    error: 'Ein Fehler ist aufgetreten, bitte versuche es später erneut.',
+  },
   header: {
     appName: 'DCUOBot',
     logoAlt: 'DCUOBot Logo',

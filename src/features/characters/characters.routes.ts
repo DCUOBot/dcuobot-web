@@ -33,9 +33,7 @@ export const characterDetailsRoute = createRoute({
   loaderDeps: ({ search }) => ({ search }),
   loader: ({ context: { queryClient }, deps: { search } }) =>
     queryClient.query(characterQueries.getCharacter(search.query!, search.worldId!)),
-  errorComponent: lazyRouteComponent(
-    () => import('@/features/characters/CharacterDetailsNotFound'),
-  ),
+  errorComponent: lazyRouteComponent(() => import('@/features/characters/CharacterDetailsError')),
   component: lazyRouteComponent(() => import('@/features/characters/CharacterDetails')),
 });
 
