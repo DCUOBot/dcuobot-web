@@ -35,7 +35,7 @@ export const charactersRankingRoute = createRoute({
   loaderDeps: ({ search }) => ({ search }),
   loader: ({ context: { queryClient }, deps: { search } }) =>
     queryClient.query(characterQueries.getCharactersRanking(search.worldId, search.sort)),
-  errorComponent: lazyRouteComponent(() => import('@/components/Error')),
+  errorComponent: lazyRouteComponent(() => import('@/components/ErrorFallback')),
   component: lazyRouteComponent(() => import('@/features/characters/CharactersRanking')),
 });
 

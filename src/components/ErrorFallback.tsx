@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
 import { toast } from 'sonner';
 
-export default function Error() {
+export default function ErrorFallback() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const hasShownToast = useRef(false);
