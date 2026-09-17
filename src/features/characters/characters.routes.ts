@@ -3,6 +3,7 @@ import { rootRoute } from '@/app/root-route';
 import { loadFeatureLocale } from '@/i18n/loadFeatureLocale';
 import { characterQueries } from '@/features/characters/queries';
 import { requireEntitySearch, validateEntitySearch } from '@/lib/entity-search-route';
+import { validateRankingSearch } from '@/lib/ranking-search-route';
 
 export const charactersRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -29,6 +30,12 @@ export const characterDetailsRoute = createRoute({
 export const charactersRankingRoute = createRoute({
   getParentRoute: () => charactersRoute,
   path: '/ranking',
+  validateSearch: (search: Record<string, unknown>) =>
+    validateRankingSearch(search, 'skill_points'),
+  loaderDeps: ({ search }) => ({ search }),
+  loader: ({ context: { queryClient }, deps: { search } }) =>
+    queryClient.query(characterQueries.getCharactersRanking(search.worldId, search.sort)),
+  errorComponent: lazyRouteComponent(() => import('@/components/Error')),
   component: lazyRouteComponent(() => import('@/features/characters/CharactersRanking')),
 });
 

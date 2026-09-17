@@ -11,3 +11,14 @@ export async function getCharacter(name: string, worldId: number): Promise<Chara
 
   return data;
 }
+
+export async function getCharactersRanking(worldId: number, sort: string): Promise<Character[]> {
+  const { data } = await httpClient.get<Character[]>('/characters', {
+    params: {
+      worldId,
+      sort,
+    },
+  });
+
+  return data;
+}
