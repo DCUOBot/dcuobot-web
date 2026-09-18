@@ -1,4 +1,3 @@
-import type { Character } from '@/features/characters/models/character';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
   MedalFirstPlaceIcon,
@@ -8,11 +7,13 @@ import {
 import { formatWorldId } from '@/lib/world-id-format';
 
 type Props = {
-  character: Character;
+  name: string;
   index: number;
+  worldId: string;
+  alignment: string;
 };
 
-export default function CharacterSummaryHeading({ character, index }: Props) {
+export default function RankMedalHeading({ name, index, worldId, alignment }: Props) {
   const renderMedal = () => {
     switch (index) {
       case 0:
@@ -42,10 +43,10 @@ export default function CharacterSummaryHeading({ character, index }: Props) {
     <div>
       <p className="scroll-m-20 text-3xl font-semibold tracking-tight flex items-center justify-center lg:justify-start gap-1">
         {renderMedal()}
-        <span>{character.name}</span>
+        <span>{name}</span>
       </p>
       <p className="text-muted-foreground text-center lg:text-start">
-        #{index + 1}&nbsp;{formatWorldId(character.world_id)}&nbsp;{character.alignment}
+        #{index + 1}&nbsp;{formatWorldId(worldId)}&nbsp;{alignment}
       </p>
     </div>
   );

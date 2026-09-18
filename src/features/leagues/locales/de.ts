@@ -20,6 +20,29 @@ const de: typeof en = {
       noMembers: 'Keine Mitglieder.',
       notFound: 'Liga nicht gefunden.',
     },
+    ranking: {
+      heading: 'Liga Rangliste',
+      subheading: 'Rangliste der besten Ligen basierend auf ihren Werten.',
+      servers: {
+        all: 'Alle Server',
+        usPcPs: 'USPC/PS',
+        euPcPs: 'EUPC/PS',
+        usSwitch: 'US Switch',
+        euSwitch: 'EU Switch',
+        xbox: 'Xbox',
+        placeholder: 'Wähle einen Server',
+        ariaLabel: 'Server',
+      },
+      sort: {
+        memberCount: 'Mitgliederanzahl',
+        averageSkillPoints: 'Durchschn. Fertigkeitspunkte',
+        averageCombatRating: 'Durchschn. Kampfwertung',
+        averagePvpCombatRating: 'Durchschn. PvP Kampfwertung',
+        placeholder: 'Wähle ein Sortierkriterium',
+        ariaLabel: 'Sortierkriterium',
+      },
+      refreshAriaLabel: 'Rangliste aktualisieren',
+    },
   },
 };
 

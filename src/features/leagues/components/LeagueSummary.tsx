@@ -1,33 +1,33 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { Link } from '@tanstack/react-router';
-import type { Character } from '@/features/characters/models/character';
-import ProtectedImage from '@/components/ProtectedImage';
+import type { League } from '@/features/leagues/models/league';
 import { useTranslation } from 'react-i18next';
+import { Link } from '@tanstack/react-router';
+import { Card, CardContent } from '@/components/ui/card';
+import ProtectedImage from '@/components/ProtectedImage';
 import RankMedalHeading from '@/components/RankMedalHeading';
-import CharacterSummaryStats from '@/features/characters/components/CharacterSummaryStats';
+import LeagueSummaryStats from '@/features/leagues/components/LeagueSummaryStats';
 import { ChevronRight } from 'lucide-react';
 
 type Props = {
-  character: Character;
+  league: League;
   index: number;
   sort: string;
 };
 
-export default function CharacterSummary({ character, index, sort }: Props) {
-  const { t } = useTranslation('characters');
+export default function LeagueSummary({ league, index, sort }: Props) {
+  const { t } = useTranslation('leagues');
 
   return (
     <Link
-      to="/characters"
-      search={{ query: character.name, worldId: Number(character.world_id) }}
+      to="/leagues"
+      search={{ query: league.name, worldId: Number(league.world_id) }}
       className="rounded-4xl"
     >
       <Card>
         <CardContent className="flex flex-col lg:flex-row gap-4">
           <div className="flex justify-center">
             <ProtectedImage
-              src={character.image.url}
-              alt={t('character.details.imageAlt')}
+              src="/assets/images/genders/mixed.jpeg"
+              alt={t('league.details.imageAlt')}
               width={117}
               height={188}
               className="select-none drag-none rounded-4xl"
@@ -36,14 +36,14 @@ export default function CharacterSummary({ character, index, sort }: Props) {
 
           <div className="flex flex-col justify-between">
             <RankMedalHeading
-              name={character.name}
+              name={league.name}
               index={index}
-              worldId={character.world_id}
-              alignment={character.alignment}
+              worldId={league.world_id}
+              alignment={league.alignment}
             />
 
-            <CharacterSummaryStats
-              character={character}
+            <LeagueSummaryStats
+              league={league}
               sort={sort}
             />
           </div>

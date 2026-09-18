@@ -3,6 +3,7 @@ import { rootRoute } from '@/app/root-route';
 import { loadFeatureLocale } from '@/i18n/loadFeatureLocale';
 import { leagueQueries } from '@/features/leagues/queries';
 import { requireEntitySearch, validateEntitySearch } from '@/lib/entity-search-route';
+import { validateRankingSearch } from '@/lib/ranking-search-route';
 
 export const leaguesRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -29,6 +30,12 @@ export const leagueDetailsRoute = createRoute({
 export const leaguesRankingRoute = createRoute({
   getParentRoute: () => leaguesRoute,
   path: '/ranking',
+  validateSearch: (search: Record<string, unknown>) =>
+    validateRankingSearch(search, 'averageSkillPoints'),
+  loaderDeps: ({ search }) => ({ search }),
+  loader: ({ context: { queryClient }, deps: { search } }) =>
+    queryClient.query(leagueQueries.getLeaguesRanking(search.worldId, search.sort)),
+  errorComponent: lazyRouteComponent(() => import('@/components/ErrorFallback')),
   component: lazyRouteComponent(() => import('@/features/leagues/LeaguesRanking')),
 });
 
