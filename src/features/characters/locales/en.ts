@@ -1,6 +1,8 @@
 const en = {
   character: {
     details: {
+      pageTitle: '{{name}} - Characters - DCUOBot',
+      pageDescription: 'Lookup the DC Universe Online character stats of {{name}}.',
       imageAlt: 'Character image',
       name: 'Name',
       server: 'Server',
@@ -25,6 +27,8 @@ const en = {
       notFound: 'Character not found.',
     },
     ranking: {
+      pageTitle: 'Characters Ranking - DCUOBot',
+      pageDescription: 'Top DC Universe Online characters ranking based on character stats.',
       heading: 'Characters Ranking',
       subheading: 'Top characters ranking based on character stats.',
       servers: {

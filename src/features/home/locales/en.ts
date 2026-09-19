@@ -1,5 +1,7 @@
 const en = {
   home: {
+    pageTitle: 'DCUOBot - DC Universe Online Stats Lookup',
+    pageDescription: 'Character and league stats, rankings and more for DC Universe Online.',
     heading: 'DCUOBot',
     subheading: 'Lookup character and league stats in your own Discord server or on this website.',
     addBot: 'Add DCUOBot',

@@ -5,6 +5,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { characterQueries } from '@/features/characters/queries';
 import CharacterSummary from '@/features/characters/components/CharacterSummary';
 import RankingPage from '@/components/RankingPage';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
 
 export default function CharactersRanking() {
   const search = charactersRankingRoute.useSearch();
@@ -12,6 +13,9 @@ export default function CharactersRanking() {
   const { data: characters } = useSuspenseQuery(
     characterQueries.getCharactersRanking(search.worldId, search.sort),
   );
+
+  useDocumentTitle(t('character.ranking.pageTitle'));
+  useMetaDescription(t('character.ranking.pageDescription'));
 
   return (
     <RankingPage

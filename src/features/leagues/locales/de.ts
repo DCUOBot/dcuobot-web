@@ -3,6 +3,8 @@ import type en from '@/features/leagues/locales/en';
 const de: typeof en = {
   league: {
     details: {
+      pageTitle: '{{name}} - Ligen - DCUOBot',
+      pageDescription: 'Rufe die Statistiken der DC Universe Online Liga {{name}} ' + 'ab.',
       imageAlt: 'Liga Bild',
       name: 'Name',
       server: 'Server',
@@ -21,6 +23,8 @@ const de: typeof en = {
       notFound: 'Liga nicht gefunden.',
     },
     ranking: {
+      pageTitle: 'Liga Rangliste - DCUOBot',
+      pageDescription: 'Rangliste der besten DC Universe Online Ligen basierend auf ihren Werten.',
       heading: 'Liga Rangliste',
       subheading: 'Rangliste der besten Ligen basierend auf ihren Werten.',
       servers: {

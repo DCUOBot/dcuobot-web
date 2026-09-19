@@ -2,6 +2,8 @@ import type en from '@/features/commands/locales/en';
 
 const de: typeof en = {
   commands: {
+    pageTitle: 'Befehle - DCUOBot',
+    pageDescription: 'Liste der Befehle des DCUOBot Discord-Bots und deren Verwendung.',
     heading: 'Befehle',
     subheading: 'Liste der Befehle des Discord-Bots und deren Verwendung.',
     command: 'Befehl:',

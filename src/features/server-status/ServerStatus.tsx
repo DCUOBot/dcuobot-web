@@ -2,10 +2,14 @@ import { useTranslation } from 'react-i18next';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { serverStatusQueries } from '@/features/server-status/queries.ts';
 import GameServerCard from '@/features/server-status/components/GameServerCard.tsx';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
 
 export default function ServerStatus() {
   const { t } = useTranslation('serverStatus');
   const { data: gameServers } = useSuspenseQuery(serverStatusQueries.getServerStatus());
+
+  useDocumentTitle(t('serverStatus.pageTitle'));
+  useMetaDescription(t('serverStatus.pageDescription'));
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 flex flex-col pt-6 lg:pt-20">

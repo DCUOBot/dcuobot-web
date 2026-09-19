@@ -1,5 +1,7 @@
 const en = {
   commands: {
+    pageTitle: 'Commands - DCUOBot',
+    pageDescription: 'List of the DCUOBot Discord bot commands and their usage.',
     heading: 'Commands',
     subheading: 'List of Discord bot commands and their usage.',
     command: 'Command:',

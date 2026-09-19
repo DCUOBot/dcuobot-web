@@ -5,6 +5,7 @@ import { leagueQueries } from '@/features/leagues/queries';
 import LeaguesRankingForm from '@/features/leagues/components/LeaguesRankingForm';
 import LeagueSummary from '@/features/leagues/components/LeagueSummary';
 import RankingPage from '@/components/RankingPage';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
 
 export default function LeaguesRanking() {
   const search = leaguesRankingRoute.useSearch();
@@ -12,6 +13,9 @@ export default function LeaguesRanking() {
   const { data: leagues } = useSuspenseQuery(
     leagueQueries.getLeaguesRanking(search.worldId, search.sort),
   );
+
+  useDocumentTitle(t('league.ranking.pageTitle'));
+  useMetaDescription(t('league.ranking.pageDescription'));
 
   return (
     <RankingPage

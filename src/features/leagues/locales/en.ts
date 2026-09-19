@@ -1,6 +1,8 @@
 const en = {
   league: {
     details: {
+      pageTitle: '{{name}} - Leagues - DCUOBot',
+      pageDescription: 'Lookup the DC Universe Online league stats of {{name}}.',
       imageAlt: 'League image',
       name: 'Name',
       server: 'Server',
@@ -19,6 +21,8 @@ const en = {
       notFound: 'League not found.',
     },
     ranking: {
+      pageTitle: 'Leagues Ranking - DCUOBot',
+      pageDescription: 'Top DC Universe Online leagues ranking based on league stats.',
       heading: 'Leagues Ranking',
       subheading: 'Top leagues ranking based on league stats.',
       servers: {
