@@ -7,6 +7,7 @@ const de: typeof en = {
       'Rufe Charakter- und Liga-Statistiken auf deinem eigenen Discord-Server oder auf ' +
       'dieser Website ab.',
     addBot: 'DCUOBot hinzufügen',
+    apiDocs: 'API Dokumentation',
     commands: 'Befehle',
     lfg: {
       heading: 'Suche nach Gruppe',

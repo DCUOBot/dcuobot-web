@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/components/ui/button';
+import { Button, LinkButton } from '@/components/ui/button';
 import { RouterLinkButton } from '@/components/ui/router-link-button';
 import LfgExampleEmbed from '@/features/home/components/LfgExampleEmbed';
 import CharacterExampleEmbed from '@/features/home/components/CharacterExampleEmbed';
@@ -21,7 +21,7 @@ export default function Home() {
         </h1>
         <p className="mt-2 text-xl text-muted-foreground">{t('home.subheading')}</p>
 
-        <div className="space-x-2 mt-6">
+        <div className="space-x-2 space-y-2 mt-6">
           <Button
             size="lg"
             onClick={openInviteBotUrl}
@@ -35,6 +35,14 @@ export default function Home() {
           >
             {t('home.commands')}
           </RouterLinkButton>
+          <LinkButton
+            href="https://dcuo.bot/api/docs"
+            target="_blank"
+            size="lg"
+            variant="secondary"
+          >
+            {t('home.apiDocs')}
+          </LinkButton>
         </div>
       </section>
 

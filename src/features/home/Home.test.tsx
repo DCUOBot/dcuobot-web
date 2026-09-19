@@ -70,6 +70,14 @@ describe('Home', () => {
     ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Add DCUOBot' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Commands' })).toHaveAttribute('href', '/commands');
+    expect(screen.getByRole('link', { name: 'API Documentation' })).toHaveAttribute(
+      'href',
+      'https://dcuo.bot/api/docs',
+    );
+    expect(screen.getByRole('link', { name: 'API Documentation' })).toHaveAttribute(
+      'target',
+      '_blank',
+    );
   });
 
   it('opens the bot invite URL in a new tab when the add bot button is clicked', async () => {
