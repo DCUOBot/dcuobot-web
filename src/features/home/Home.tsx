@@ -6,9 +6,12 @@ import CharacterExampleEmbed from '@/features/home/components/CharacterExampleEm
 import LeagueExampleEmbed from '@/features/home/components/LeagueExampleEmbed';
 import TopCharactersExampleEmbed from '@/features/home/components/TopCharactersExampleEmbed';
 import TopLeaguesExampleEmbed from '@/features/home/components/TopLeaguesExampleEmbed';
+import { buildInviteUrl } from '@/lib/bot-invite.ts';
 
 export default function Home() {
   const { t } = useTranslation('home');
+
+  const openInviteBotUrl = () => window.open(buildInviteUrl(), '_blank');
 
   return (
     <div className="max-w-7xl mx-auto px-4 flex flex-col pt-20 sm:pt-48">
@@ -19,7 +22,12 @@ export default function Home() {
         <p className="mt-2 text-xl text-muted-foreground">{t('home.subheading')}</p>
 
         <div className="space-x-2 mt-6">
-          <Button size="lg">{t('home.addBot')}</Button>
+          <Button
+            size="lg"
+            onClick={openInviteBotUrl}
+          >
+            {t('home.addBot')}
+          </Button>
           <RouterLinkButton
             to="/commands"
             size="lg"
