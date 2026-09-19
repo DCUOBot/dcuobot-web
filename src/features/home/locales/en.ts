@@ -3,6 +3,7 @@ const en = {
     heading: 'DCUOBot',
     subheading: 'Lookup character and league stats in your own Discord server or on this website.',
     addBot: 'Add DCUOBot',
+    apiDocs: 'API Documentation',
     commands: 'Commands',
     lfg: {
       heading: 'Looking for Group',

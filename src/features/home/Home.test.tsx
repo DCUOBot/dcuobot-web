@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { afterEach, beforeAll, describe, expect, it } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import {
   createMemoryHistory,
   createRootRoute,
@@ -12,6 +12,7 @@ import {
 import Home from './Home';
 import homeEn from './locales/en';
 import i18n from '@/i18n';
+import { buildInviteUrl } from '@/lib/bot-invite.ts';
 
 function routeMarker(path: string) {
   return () => <div data-testid="route-marker">{path}</div>;
@@ -69,6 +70,30 @@ describe('Home', () => {
     ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Add DCUOBot' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Commands' })).toHaveAttribute('href', '/commands');
+    expect(screen.getByRole('link', { name: 'API Documentation' })).toHaveAttribute(
+      'href',
+      'https://dcuo.bot/api/docs',
+    );
+    expect(screen.getByRole('link', { name: 'API Documentation' })).toHaveAttribute(
+      'target',
+      '_blank',
+    );
+  });
+
+  it('opens the bot invite URL in a new tab when the add bot button is clicked', async () => {
+    const openSpy = vi.spyOn(window, 'open').mockReturnValue(null);
+    const user = userEvent.setup();
+    renderHome();
+    await screen.findByTestId('route-marker');
+
+    await user.click(screen.getByRole('button', { name: 'Add DCUOBot' }));
+
+    expect(openSpy).toHaveBeenCalledTimes(1);
+    const [url, target] = openSpy.mock.calls[0];
+    expect(url?.toString()).toBe(buildInviteUrl().toString());
+    expect(target).toBe('_blank');
+
+    openSpy.mockRestore();
   });
 
   it('navigates to the commands page when the commands link is clicked', async () => {

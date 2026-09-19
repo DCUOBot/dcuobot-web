@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/drawer';
 import { useState } from 'react';
 import ThemeToggle from '@/components/layout/header/ThemeToggle';
+import { buildInviteUrl } from '@/lib/bot-invite.ts';
 
 type NavLink = {
   i18n: string;
@@ -52,6 +53,8 @@ export default function Header() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  const openInviteBotUrl = () => window.open(buildInviteUrl(), '_blank');
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/60 backdrop-blur supports-backdrop-filter:bg-background/60">
@@ -113,7 +116,12 @@ export default function Header() {
           )}
         </nav>
 
-        <Button className="order-5 hidden lg:inline-flex">{t('header.addBot')}</Button>
+        <Button
+          className="order-5 hidden lg:inline-flex"
+          onClick={openInviteBotUrl}
+        >
+          {t('header.addBot')}
+        </Button>
 
         <div className="order-2 ml-auto lg:order-6 lg:ml-0">
           <ThemeToggle />
@@ -176,7 +184,10 @@ export default function Header() {
 
               <Button
                 className="mt-4"
-                onClick={closeMobileMenu}
+                onClick={() => {
+                  closeMobileMenu();
+                  openInviteBotUrl();
+                }}
               >
                 {t('header.addBot')}
               </Button>

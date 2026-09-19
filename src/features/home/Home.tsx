@@ -1,14 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/components/ui/button';
+import { Button, LinkButton } from '@/components/ui/button';
 import { RouterLinkButton } from '@/components/ui/router-link-button';
 import LfgExampleEmbed from '@/features/home/components/LfgExampleEmbed';
 import CharacterExampleEmbed from '@/features/home/components/CharacterExampleEmbed';
 import LeagueExampleEmbed from '@/features/home/components/LeagueExampleEmbed';
 import TopCharactersExampleEmbed from '@/features/home/components/TopCharactersExampleEmbed';
 import TopLeaguesExampleEmbed from '@/features/home/components/TopLeaguesExampleEmbed';
+import { buildInviteUrl } from '@/lib/bot-invite.ts';
 
 export default function Home() {
   const { t } = useTranslation('home');
+
+  const openInviteBotUrl = () => window.open(buildInviteUrl(), '_blank');
 
   return (
     <div className="max-w-7xl mx-auto px-4 flex flex-col pt-20 sm:pt-48">
@@ -18,8 +21,13 @@ export default function Home() {
         </h1>
         <p className="mt-2 text-xl text-muted-foreground">{t('home.subheading')}</p>
 
-        <div className="space-x-2 mt-6">
-          <Button size="lg">{t('home.addBot')}</Button>
+        <div className="space-x-2 space-y-2 mt-6">
+          <Button
+            size="lg"
+            onClick={openInviteBotUrl}
+          >
+            {t('home.addBot')}
+          </Button>
           <RouterLinkButton
             to="/commands"
             size="lg"
@@ -27,6 +35,14 @@ export default function Home() {
           >
             {t('home.commands')}
           </RouterLinkButton>
+          <LinkButton
+            href="https://dcuo.bot/api/docs"
+            target="_blank"
+            size="lg"
+            variant="secondary"
+          >
+            {t('home.apiDocs')}
+          </LinkButton>
         </div>
       </section>
 
