@@ -1,16 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import CharacterSummaryHeading from './CharacterSummaryHeading';
-import { createCharacter } from '@/features/characters/fixtures/character.fixture';
+import RankMedalHeading from './RankMedalHeading';
 
-describe('CharacterSummaryHeading', () => {
-  it('renders the character name and rank', () => {
-    const character = createCharacter({ name: 'Comedian' });
-
+describe('RankMedalHeading', () => {
+  it('renders the name and rank', () => {
     render(
-      <CharacterSummaryHeading
-        character={character}
+      <RankMedalHeading
+        name="Comedian"
         index={3}
+        worldId="2"
+        alignment="Villain"
       />,
     );
 
@@ -19,12 +18,12 @@ describe('CharacterSummaryHeading', () => {
   });
 
   it('renders the formatted world id and alignment', () => {
-    const character = createCharacter({ world_id: '4', alignment: 'Hero' });
-
     render(
-      <CharacterSummaryHeading
-        character={character}
+      <RankMedalHeading
+        name="Comedian"
         index={0}
+        worldId="4"
+        alignment="Hero"
       />,
     );
 
@@ -37,12 +36,12 @@ describe('CharacterSummaryHeading', () => {
     [1, 'text-gray-400'],
     [2, 'text-amber-600'],
   ])('renders the rank %i medal', (index, colorClass) => {
-    const character = createCharacter();
-
     const { container } = render(
-      <CharacterSummaryHeading
-        character={character}
+      <RankMedalHeading
+        name="Comedian"
         index={index}
+        worldId="2"
+        alignment="Villain"
       />,
     );
 
@@ -50,12 +49,12 @@ describe('CharacterSummaryHeading', () => {
   });
 
   it('does not render a medal for ranks after the top three', () => {
-    const character = createCharacter();
-
     const { container } = render(
-      <CharacterSummaryHeading
-        character={character}
+      <RankMedalHeading
+        name="Comedian"
         index={3}
+        worldId="2"
+        alignment="Villain"
       />,
     );
 

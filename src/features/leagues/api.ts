@@ -11,3 +11,15 @@ export async function getLeague(name: string, worldId: number): Promise<League> 
 
   return data;
 }
+
+export async function getLeaguesRanking(worldId: number, sort: string): Promise<League[]> {
+  const { data } = await httpClient.get<League[]>('/guilds', {
+    params: {
+      sort,
+      sortDirection: 'DESC',
+      ...(worldId !== 0 && { worldId }),
+    },
+  });
+
+  return data;
+}
