@@ -3,6 +3,8 @@ import type en from '@/features/characters/locales/en';
 const de: typeof en = {
   character: {
     details: {
+      pageTitle: '{{name}} - Charaktere - DCUOBot',
+      pageDescription: 'Rufe die Statistiken des DC Universe Online Charakters {{name}} ' + 'ab.',
       imageAlt: 'Charakterbild',
       name: 'Name',
       server: 'Server',
@@ -27,6 +29,9 @@ const de: typeof en = {
       notFound: 'Charakter nicht gefunden.',
     },
     ranking: {
+      pageTitle: 'Charakter Rangliste - DCUOBot',
+      pageDescription:
+        'Rangliste der besten DC Universe Online Charaktere basierend auf ihren Werten.',
       heading: 'Charakter Rangliste',
       subheading: 'Rangliste der besten Charaktere basierend auf ihren Werten.',
       servers: {

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.tsx';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
 
 interface Command {
   key: string;
@@ -29,6 +30,9 @@ const COMMANDS: Command[] = [
 
 export default function Commands() {
   const { t } = useTranslation('commands');
+
+  useDocumentTitle(t('commands.pageTitle'));
+  useMetaDescription(t('commands.pageDescription'));
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 flex flex-col pt-6 lg:pt-20">

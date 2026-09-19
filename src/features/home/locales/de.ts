@@ -2,6 +2,8 @@ import type en from '@/features/home/locales/en';
 
 const de: typeof en = {
   home: {
+    pageTitle: 'DCUOBot - DC Universe Online Statistiken',
+    pageDescription: 'Charakter- und Liga-Statistiken, Ranglisten und mehr für DC Universe Online.',
     heading: 'DCUOBot',
     subheading:
       'Rufe Charakter- und Liga-Statistiken auf deinem eigenen Discord-Server oder auf ' +

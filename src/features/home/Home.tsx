@@ -7,9 +7,13 @@ import LeagueExampleEmbed from '@/features/home/components/LeagueExampleEmbed';
 import TopCharactersExampleEmbed from '@/features/home/components/TopCharactersExampleEmbed';
 import TopLeaguesExampleEmbed from '@/features/home/components/TopLeaguesExampleEmbed';
 import { buildInviteUrl } from '@/lib/bot-invite.ts';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
 
 export default function Home() {
   const { t } = useTranslation('home');
+
+  useDocumentTitle(t('home.pageTitle'));
+  useMetaDescription(t('home.pageDescription'));
 
   const openInviteBotUrl = () => window.open(buildInviteUrl(), '_blank');
 

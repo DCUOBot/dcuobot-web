@@ -7,11 +7,15 @@ import LeagueStats from '@/features/leagues/components/LeagueStats';
 import LeagueMembers from '@/features/leagues/components/LeagueMembers';
 import ProtectedImage from '@/components/ProtectedImage';
 import { useTranslation } from 'react-i18next';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
 
 export default function LeagueDetails() {
   const { t } = useTranslation('leagues');
   const { query, worldId } = leagueDetailsRoute.useSearch();
   const { data: league } = useSuspenseQuery(leagueQueries.getLeague(query!, worldId!));
+
+  useDocumentTitle(t('league.details.pageTitle', { name: league.name }));
+  useMetaDescription(t('league.details.pageDescription', { name: league.name }));
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 flex flex-col pt-6 lg:pt-20">
