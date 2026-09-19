@@ -22,7 +22,7 @@ export default function RankingPage<T>({ heading, subheading, form, items, rende
       <div className="block mt-6">{form}</div>
 
       <div className="flex flex-col gap-4 mt-6">
-        {visibleItems.map(renderItem)}
+        {visibleItems.map((item, index) => renderItem(item, index))}
         {hasMore && (
           <div
             ref={loadMoreRef}
