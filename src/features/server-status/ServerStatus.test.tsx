@@ -1,12 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import { Suspense } from 'react';
-import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ServerStatus from './ServerStatus';
-import serverStatusEn from '@/features/server-status/locales/en';
 import { createGameServer } from '@/features/server-status/fixtures/game-server.fixture';
-import i18n from '@/i18n';
 import { getServerStatus } from '@/features/server-status/api';
+
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: (key: string) => key }),
+}));
 
 vi.mock('@/features/server-status/api');
 
@@ -23,24 +25,19 @@ function renderServerStatus() {
 }
 
 describe('ServerStatus', () => {
-  beforeAll(() => {
-    i18n.addResourceBundle('en', 'serverStatus', serverStatusEn);
-  });
-
-  afterEach(async () => {
-    await i18n.changeLanguage('en');
+  afterEach(() => {
     vi.mocked(getServerStatus).mockReset();
   });
 
-  it('renders the heading and subheading', async () => {
+  it('renders the heading and subheading translation keys', async () => {
     vi.mocked(getServerStatus).mockResolvedValue([createGameServer()]);
 
     renderServerStatus();
 
     expect(
-      await screen.findByRole('heading', { level: 1, name: 'Server Status' }),
+      await screen.findByRole('heading', { level: 1, name: 'serverStatus.heading' }),
     ).toBeInTheDocument();
-    expect(screen.getByText('Status of the DC Universe Online game servers.')).toBeInTheDocument();
+    expect(screen.getByText('serverStatus.subheading')).toBeInTheDocument();
   });
 
   it('renders a card for each game server returned by the API', async () => {
@@ -54,10 +51,10 @@ describe('ServerStatus', () => {
 
     await screen.findByText('USPC/PS');
     expect(screen.getByText('EUPC/PS')).toBeInTheDocument();
-    expect(screen.getByText('Online')).toBeInTheDocument();
-    expect(screen.getByText('Offline')).toBeInTheDocument();
-    expect(screen.getByText('High')).toBeInTheDocument();
-    expect(screen.getByText('Low')).toBeInTheDocument();
+    expect(screen.getByText('serverStatus.online')).toBeInTheDocument();
+    expect(screen.getByText('serverStatus.offline')).toBeInTheDocument();
+    expect(screen.getByText('serverStatus.high')).toBeInTheDocument();
+    expect(screen.getByText('serverStatus.low')).toBeInTheDocument();
   });
 
   it('renders no server cards when the API returns an empty list', async () => {
@@ -65,7 +62,7 @@ describe('ServerStatus', () => {
 
     renderServerStatus();
 
-    await screen.findByRole('heading', { level: 1, name: 'Server Status' });
-    expect(screen.queryByText('Server')).not.toBeInTheDocument();
+    await screen.findByRole('heading', { level: 1, name: 'serverStatus.heading' });
+    expect(screen.queryByText('serverStatus.server')).not.toBeInTheDocument();
   });
 });
