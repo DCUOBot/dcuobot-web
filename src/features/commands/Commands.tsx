@@ -2,116 +2,27 @@ import { useTranslation } from 'react-i18next';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.tsx';
 
 interface Command {
+  key: string;
   label: string;
-  descriptionI18n: string;
-  arguments: CommandArg[];
-}
-
-interface CommandArg {
-  label: string;
-  descriptionI18n: string;
+  args: string[];
 }
 
 const COMMANDS: Command[] = [
+  { key: 'character', label: '/character', args: ['server', 'name'] },
+  { key: 'statistics', label: '/statistics', args: ['server', 'name'] },
+  { key: 'league', label: '/league', args: ['server', 'name'] },
+  { key: 'topcharacters', label: '/topcharacters', args: ['server', 'sortby'] },
+  { key: 'topleagues', label: '/topleagues', args: ['server', 'sortby'] },
+  { key: 'servers', label: '/servers', args: [] },
   {
-    label: '/character',
-    descriptionI18n: 'commands.commands.character.description',
-    arguments: [
-      {
-        label: 'server',
-        descriptionI18n: 'commands.commands.character.args.server',
-      },
-      {
-        label: 'name',
-        descriptionI18n: 'commands.commands.character.args.name',
-      },
-    ],
-  },
-  {
-    label: '/statistics',
-    descriptionI18n: 'commands.commands.statistics.description',
-    arguments: [
-      {
-        label: 'server',
-        descriptionI18n: 'commands.commands.statistics.args.server',
-      },
-      {
-        label: 'name',
-        descriptionI18n: 'commands.commands.statistics.args.name',
-      },
-    ],
-  },
-  {
-    label: '/league',
-    descriptionI18n: 'commands.commands.league.description',
-    arguments: [
-      {
-        label: 'server',
-        descriptionI18n: 'commands.commands.league.args.server',
-      },
-      {
-        label: 'name',
-        descriptionI18n: 'commands.commands.league.args.name',
-      },
-    ],
-  },
-  {
-    label: '/topcharacters',
-    descriptionI18n: 'commands.commands.topcharacters.description',
-    arguments: [
-      {
-        label: 'server',
-        descriptionI18n: 'commands.commands.topcharacters.args.server',
-      },
-      {
-        label: 'sortby',
-        descriptionI18n: 'commands.commands.topcharacters.args.sortby',
-      },
-    ],
-  },
-  {
-    label: '/topleagues',
-    descriptionI18n: 'commands.commands.topleagues.description',
-    arguments: [
-      {
-        label: 'server',
-        descriptionI18n: 'commands.commands.topleagues.args.server',
-      },
-      {
-        label: 'sortby',
-        descriptionI18n: 'commands.commands.topleagues.args.sortby',
-      },
-    ],
-  },
-  {
-    label: '/servers',
-    descriptionI18n: 'commands.commands.servers.description',
-    arguments: [],
-  },
-  {
+    key: 'lfg',
     label: '/lfg',
-    descriptionI18n: 'commands.commands.lfg.description',
-    arguments: [
-      {
-        label: 'instance_name',
-        descriptionI18n: 'commands.commands.lfg.args.instance_name',
-      },
-      {
-        label: 'amount_of_tanks',
-        descriptionI18n: 'commands.commands.lfg.args.amount_of_tanks',
-      },
-      {
-        label: 'amount_of_healers',
-        descriptionI18n: 'commands.commands.lfg.args.amount_of_healers',
-      },
-      {
-        label: 'amount_of_controllers',
-        descriptionI18n: 'commands.commands.lfg.args.amount_of_controllers',
-      },
-      {
-        label: 'amount_of_dps',
-        descriptionI18n: 'commands.commands.lfg.args.amount_of_dps',
-      },
+    args: [
+      'instance_name',
+      'amount_of_tanks',
+      'amount_of_healers',
+      'amount_of_controllers',
+      'amount_of_dps',
     ],
   },
 ];
@@ -154,18 +65,18 @@ export default function Commands() {
 
             <div className="flex gap-1 mb-2">
               <strong>{t('commands.description')}</strong>
-              <code>{t(command.descriptionI18n)}</code>
+              <code>{t(`commands.commands.${command.key}.description`)}</code>
             </div>
 
             <strong>{t('commands.arguments')}</strong>
             <ul className="pl-2">
-              {command.arguments.map((arg, index) => (
+              {command.args.map((arg) => (
                 <li
-                  key={index}
+                  key={arg}
                   className="flex gap-1"
                 >
-                  <strong>{arg.label}:</strong>
-                  <code>{t(arg.descriptionI18n)}</code>
+                  <strong>{arg}:</strong>
+                  <code>{t(`commands.commands.${command.key}.args.${arg}`)}</code>
                 </li>
               ))}
             </ul>
