@@ -1,19 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import { afterEach, beforeAll, describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import GameServerCard from './GameServerCard';
-import serverStatusEn from '@/features/server-status/locales/en';
 import { createGameServer } from '@/features/server-status/fixtures/game-server.fixture';
-import i18n from '@/i18n';
+
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: (key: string) => key }),
+}));
 
 describe('GameServerCard', () => {
-  beforeAll(() => {
-    i18n.addResourceBundle('en', 'serverStatus', serverStatusEn);
-  });
-
-  afterEach(async () => {
-    await i18n.changeLanguage('en');
-  });
-
   it.each([
     ['US', 'USPC/PS'],
     ['EU', 'EUPC/PS'],
@@ -26,24 +20,24 @@ describe('GameServerCard', () => {
   });
 
   it.each([
-    ['ONLINE', 'Online'],
-    ['OFFLINE', 'Offline'],
-    ['LOCKED', 'Locked'],
-  ] as const)('renders the %s status as %s', (status, expected) => {
+    ['ONLINE', 'serverStatus.online'],
+    ['OFFLINE', 'serverStatus.offline'],
+    ['LOCKED', 'serverStatus.locked'],
+  ] as const)('renders the %s status using its translation key', (status, expectedKey) => {
     render(<GameServerCard gameServer={createGameServer({ status })} />);
 
-    expect(screen.getByText(expected)).toBeInTheDocument();
+    expect(screen.getByText(expectedKey)).toBeInTheDocument();
   });
 
   it.each([
-    ['High', 'High'],
-    ['Medium', 'Medium'],
-    ['Low', 'Low'],
-    ['MEDIUM', 'Medium'],
-  ])('translates the %s population to %s', (population, expected) => {
+    ['High', 'serverStatus.high'],
+    ['Medium', 'serverStatus.medium'],
+    ['Low', 'serverStatus.low'],
+    ['MEDIUM', 'serverStatus.medium'],
+  ])('translates the %s population using its translation key', (population, expectedKey) => {
     render(<GameServerCard gameServer={createGameServer({ population })} />);
 
-    expect(screen.getByText(expected)).toBeInTheDocument();
+    expect(screen.getByText(expectedKey)).toBeInTheDocument();
   });
 
   it('falls back to the raw population value when it is not a known level', () => {
@@ -52,11 +46,11 @@ describe('GameServerCard', () => {
     expect(screen.getByText('Unknown')).toBeInTheDocument();
   });
 
-  it('renders the labels for server, status and population', () => {
+  it('renders the translation keys for the server, status and population labels', () => {
     render(<GameServerCard gameServer={createGameServer()} />);
 
-    expect(screen.getByText('Server')).toBeInTheDocument();
-    expect(screen.getByText('Status')).toBeInTheDocument();
-    expect(screen.getByText('Population')).toBeInTheDocument();
+    expect(screen.getByText('serverStatus.server')).toBeInTheDocument();
+    expect(screen.getByText('serverStatus.status')).toBeInTheDocument();
+    expect(screen.getByText('serverStatus.population')).toBeInTheDocument();
   });
 });
