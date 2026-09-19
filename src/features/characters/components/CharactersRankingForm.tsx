@@ -1,7 +1,7 @@
 import type { RankingSearch } from '@/lib/ranking-search-route';
 import type { CharacterSort } from '@/lib/character-sort';
 import { useTranslation } from 'react-i18next';
-import RankingForm from '@/components/RankingForm';
+import EntityRankingForm from '@/components/EntityRankingForm';
 
 type Props = {
   search: RankingSearch;
@@ -11,16 +11,10 @@ export default function CharactersRankingForm({ search }: Props) {
   const { t } = useTranslation('characters');
 
   return (
-    <RankingForm<CharacterSort>
+    <EntityRankingForm<CharacterSort>
       search={search}
-      serverOptions={[
-        { id: 0, label: t('character.ranking.servers.all') },
-        { id: 2, label: t('character.ranking.servers.usPcPs') },
-        { id: 4, label: t('character.ranking.servers.euPcPs') },
-        { id: 10, label: t('character.ranking.servers.usSwitch') },
-        { id: 11, label: t('character.ranking.servers.euSwitch') },
-        { id: 5001, label: t('character.ranking.servers.xbox') },
-      ]}
+      namespace="characters"
+      keyPrefix="character.ranking"
       sortOptions={[
         { id: 'skill_points', label: t('character.ranking.sort.skillPoints') },
         { id: 'combat_rating', label: t('character.ranking.sort.combatRating') },
@@ -35,11 +29,6 @@ export default function CharactersRankingForm({ search }: Props) {
         { id: 'restoration', label: t('character.ranking.sort.restoration') },
         { id: 'vitalization', label: t('character.ranking.sort.vitalization') },
       ]}
-      serverAriaLabel={t('character.ranking.servers.ariaLabel')}
-      serverPlaceholder={t('character.ranking.servers.placeholder')}
-      sortAriaLabel={t('character.ranking.sort.ariaLabel')}
-      sortPlaceholder={t('character.ranking.sort.placeholder')}
-      refreshAriaLabel={t('character.ranking.refreshAriaLabel')}
     />
   );
 }

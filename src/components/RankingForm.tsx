@@ -1,5 +1,6 @@
 import type { RankingSearch } from '@/lib/ranking-search-route';
 import type { RankingWorldId } from '@/lib/ranking-world-id';
+import type { Option } from '@/lib/ranking-options';
 import { useNavigate } from '@tanstack/react-router';
 import { useTransition } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -13,11 +14,6 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { RefreshCw } from 'lucide-react';
-
-type Option<T extends string | number> = {
-  id: T;
-  label: string;
-};
 
 type Props<TSort extends string> = {
   search: RankingSearch;
