@@ -1,5 +1,5 @@
-import type { GameServer } from '@/features/server-status/models/game-server.ts';
-import { Card, CardContent } from '@/components/ui/card.tsx';
+import type { GameServer } from '@/features/server-status/models/game-server';
+import { Card, CardContent } from '@/components/ui/card';
 import { useTranslation } from 'react-i18next';
 
 type Props = {

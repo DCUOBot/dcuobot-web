@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/drawer';
 import { useState } from 'react';
 import ThemeToggle from '@/components/layout/header/ThemeToggle';
-import { buildInviteUrl } from '@/lib/bot-invite.ts';
+import { buildInviteUrl } from '@/lib/bot-invite';
 
 type NavLink = {
   i18n: string;

@@ -1,5 +1,6 @@
 import type { League } from '@/features/leagues/models/league';
 import { useTranslation } from 'react-i18next';
+import RankingStat from '@/components/RankingStat';
 
 type Props = {
   league: League;
@@ -11,68 +12,26 @@ export default function LeagueSummaryStats({ league, sort }: Props) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 mt-4 lg:mt-0">
-      <div className="flex justify-between items-center lg:flex-col lg:justify-start lg:items-start">
-        <span
-          className={
-            'text-xl font-semibold ' +
-            (sort !== 'averageSkillPoints' ? 'text-muted-foreground' : '')
-          }
-        >
-          {league.average_skill_points.toLocaleString(i18n.language)}
-        </span>
-        <div className="order-first lg:order-last">
-          <span className={sort !== 'averageSkillPoints' ? 'text-muted-foreground' : ''}>
-            {t('league.ranking.sort.averageSkillPoints')}
-          </span>
-        </div>
-      </div>
-
-      <div className="flex justify-between items-center lg:flex-col lg:justify-start lg:items-start">
-        <span
-          className={
-            'text-xl font-semibold ' +
-            (sort !== 'averageCombatRating' ? 'text-muted-foreground' : '')
-          }
-        >
-          {league.average_combat_rating.toLocaleString(i18n.language)}
-        </span>
-        <div className="order-first lg:order-last">
-          <span className={sort !== 'averageCombatRating' ? 'text-muted-foreground' : ''}>
-            {t('league.ranking.sort.averageCombatRating')}
-          </span>
-        </div>
-      </div>
-
-      <div className="flex justify-between items-center lg:flex-col lg:justify-start lg:items-start">
-        <span
-          className={
-            'text-xl font-semibold ' +
-            (sort !== 'averagePvpCombatRating' ? 'text-muted-foreground' : '')
-          }
-        >
-          {league.average_pvp_combat_rating.toLocaleString(i18n.language)}
-        </span>
-        <div className="order-first lg:order-last">
-          <span className={sort !== 'averagePvpCombatRating' ? 'text-muted-foreground' : ''}>
-            {t('league.ranking.sort.averagePvpCombatRating')}
-          </span>
-        </div>
-      </div>
-
-      <div className="flex justify-between items-center lg:flex-col lg:justify-start lg:items-start">
-        <span
-          className={
-            'text-xl font-semibold ' + (sort !== 'memberCount' ? 'text-muted-foreground' : '')
-          }
-        >
-          {league.member_count.toLocaleString(i18n.language)}
-        </span>
-        <div className="order-first lg:order-last">
-          <span className={sort !== 'memberCount' ? 'text-muted-foreground' : ''}>
-            {t('league.ranking.sort.memberCount')}
-          </span>
-        </div>
-      </div>
+      <RankingStat
+        value={league.average_skill_points.toLocaleString(i18n.language)}
+        label={t('league.ranking.sort.averageSkillPoints')}
+        active={sort === 'averageSkillPoints'}
+      />
+      <RankingStat
+        value={league.average_combat_rating.toLocaleString(i18n.language)}
+        label={t('league.ranking.sort.averageCombatRating')}
+        active={sort === 'averageCombatRating'}
+      />
+      <RankingStat
+        value={league.average_pvp_combat_rating.toLocaleString(i18n.language)}
+        label={t('league.ranking.sort.averagePvpCombatRating')}
+        active={sort === 'averagePvpCombatRating'}
+      />
+      <RankingStat
+        value={league.member_count.toLocaleString(i18n.language)}
+        label={t('league.ranking.sort.memberCount')}
+        active={sort === 'memberCount'}
+      />
     </div>
   );
 }

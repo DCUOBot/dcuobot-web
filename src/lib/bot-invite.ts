@@ -1,4 +1,4 @@
-import { config } from '@/lib/config.ts';
+import { config } from '@/lib/config';
 
 export const buildInviteUrl = (): URL => {
   const url = new URL(config.botInvite.baseUrl);

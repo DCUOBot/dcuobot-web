@@ -5,7 +5,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { characterQueries } from '@/features/characters/queries';
 import CharacterSummary from '@/features/characters/components/CharacterSummary';
 import RankingPage from '@/components/RankingPage';
-import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta';
 
 export default function CharactersRanking() {
   const search = charactersRankingRoute.useSearch();
@@ -25,7 +25,7 @@ export default function CharactersRanking() {
       items={characters}
       renderItem={(character, index) => (
         <CharacterSummary
-          key={index}
+          key={`${character.name}-${character.world_id}`}
           character={character}
           index={index}
           sort={search.sort}

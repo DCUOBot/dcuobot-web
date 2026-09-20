@@ -6,9 +6,9 @@ import CharacterExampleEmbed from '@/features/home/components/CharacterExampleEm
 import LeagueExampleEmbed from '@/features/home/components/LeagueExampleEmbed';
 import TopCharactersExampleEmbed from '@/features/home/components/TopCharactersExampleEmbed';
 import TopLeaguesExampleEmbed from '@/features/home/components/TopLeaguesExampleEmbed';
-import { buildInviteUrl } from '@/lib/bot-invite.ts';
-import { config } from '@/lib/config.ts';
-import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
+import { buildInviteUrl } from '@/lib/bot-invite';
+import { config } from '@/lib/config';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta';
 
 export default function Home() {
   const { t } = useTranslation('home');

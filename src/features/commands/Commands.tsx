@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.tsx';
-import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta';
 
 interface Command {
   key: string;

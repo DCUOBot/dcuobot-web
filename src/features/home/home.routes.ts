@@ -10,6 +10,7 @@ export const homeRoute = createRoute({
       en: () => import('@/features/home/locales/en'),
       de: () => import('@/features/home/locales/de'),
     }),
+  errorComponent: lazyRouteComponent(() => import('@/components/ErrorFallback')),
   component: lazyRouteComponent(() => import('@/features/home/Home')),
 });
 

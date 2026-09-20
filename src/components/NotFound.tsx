@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { RouterLinkButton } from '@/components/ui/router-link-button';
-import { useDocumentTitle } from '@/lib/meta.ts';
+import { useDocumentTitle } from '@/lib/meta';
 
 export default function NotFound() {
   const { t } = useTranslation();

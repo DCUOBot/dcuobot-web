@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta';
+import { config } from '@/lib/config';
 
 const linkClassName = 'text-primary underline underline-offset-4 hover:no-underline';
 
@@ -199,7 +200,7 @@ export default function Privacy() {
           <p>
             {t('privacy.contact.discord')} (
             <a
-              href="https://discord.gg/XbaFwtTgMa"
+              href={config.discordInviteUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={linkClassName}

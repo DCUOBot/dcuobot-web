@@ -7,7 +7,8 @@ import LeagueStats from '@/features/leagues/components/LeagueStats';
 import LeagueMembers from '@/features/leagues/components/LeagueMembers';
 import ProtectedImage from '@/components/ProtectedImage';
 import { useTranslation } from 'react-i18next';
-import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta';
+import { ENTITY_PORTRAIT_SIZE } from '@/lib/image-sizes';
 
 export default function LeagueDetails() {
   const { t } = useTranslation('leagues');
@@ -32,8 +33,7 @@ export default function LeagueDetails() {
             <ProtectedImage
               src="/assets/images/genders/mixed.jpeg"
               alt={t('league.details.imageAlt')}
-              width={246}
-              height={394}
+              {...ENTITY_PORTRAIT_SIZE}
               className="select-none drag-none rounded-4xl"
             />
           </div>

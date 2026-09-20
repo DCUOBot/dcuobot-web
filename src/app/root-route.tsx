@@ -1,10 +1,10 @@
 import { createRootRouteWithContext, lazyRouteComponent, Outlet } from '@tanstack/react-router';
-import Header from '@/components/layout/header/Header.tsx';
+import Header from '@/components/layout/header/Header';
 import Footer from '@/components/layout/footer/Footer';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import type { QueryClient } from '@tanstack/react-query';
 import { Toaster } from '@/components/ui/sonner';
-import LoadingBar from '@/components/LoadingBar.tsx';
+import LoadingBar from '@/components/LoadingBar';
 
 type RouterContext = {
   queryClient: QueryClient;

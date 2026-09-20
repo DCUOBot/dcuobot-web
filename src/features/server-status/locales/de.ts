@@ -1,4 +1,4 @@
-import type en from '@/features/server-status/locales/en.ts';
+import type en from '@/features/server-status/locales/en';
 
 const de: typeof en = {
   serverStatus: {

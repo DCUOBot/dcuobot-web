@@ -10,6 +10,7 @@ export const commandsRoute = createRoute({
       en: () => import('@/features/commands/locales/en'),
       de: () => import('@/features/commands/locales/de'),
     }),
+  errorComponent: lazyRouteComponent(() => import('@/components/ErrorFallback')),
   component: lazyRouteComponent(() => import('@/features/commands/Commands')),
 });
 

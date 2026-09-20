@@ -7,7 +7,7 @@ import CharacterArtifacts from '@/features/characters/components/CharacterArtifa
 import CharacterInfo from '@/features/characters/components/CharacterInfo';
 import CharacterStats from '@/features/characters/components/CharacterStats';
 import CharacterAllies from '@/features/characters/components/CharacterAllies';
-import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta';
 import { useTranslation } from 'react-i18next';
 
 export default function CharacterDetails() {

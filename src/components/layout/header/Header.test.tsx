@@ -11,7 +11,7 @@ import {
 } from '@tanstack/react-router';
 import Header from './Header';
 import '@/i18n';
-import { buildInviteUrl } from '@/lib/bot-invite.ts';
+import { buildInviteUrl } from '@/lib/bot-invite';
 
 function routeMarker(path: string) {
   return () => <div data-testid="route-marker">{path}</div>;

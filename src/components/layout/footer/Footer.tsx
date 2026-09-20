@@ -3,6 +3,7 @@ import { LinkButton } from '@/components/ui/button';
 import { RouterLinkButton } from '@/components/ui/router-link-button';
 import LanguageSelect from '@/components/layout/footer/LanguageSelect';
 import { SiDiscord } from '@icons-pack/react-simple-icons';
+import { config } from '@/lib/config';
 
 const currentYear = new Date().getFullYear();
 
@@ -33,7 +34,7 @@ export default function Footer() {
           </li>
           <li>
             <LinkButton
-              href="https://discord.gg/XbaFwtTgMa"
+              href={config.discordInviteUrl}
               target="_blank"
               rel="noopener noreferrer"
               variant="link"
