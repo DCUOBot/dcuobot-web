@@ -6,7 +6,11 @@ import * as path from 'node:path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), babel({ presets: [reactCompilerPreset()] }), tailwindcss()],
+  plugins: [
+    react(),
+    ...(process.env.VITEST ? [] : [babel({ presets: [reactCompilerPreset()] })]),
+    tailwindcss(),
+  ],
   test: {
     environment: 'jsdom',
     globals: true,
