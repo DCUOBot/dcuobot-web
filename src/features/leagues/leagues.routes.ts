@@ -4,6 +4,8 @@ import { loadFeatureLocale } from '@/i18n/loadFeatureLocale';
 import { leagueQueries } from '@/features/leagues/queries';
 import { requireEntitySearch, validateEntitySearch } from '@/lib/entity-search-route';
 import { validateRankingSearch } from '@/lib/ranking-search-route';
+import LeagueDetailsSkeleton from '@/features/leagues/LeagueDetailsSkeleton';
+import RankingPageSkeleton from '@/components/RankingPageSkeleton';
 
 export const leaguesRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -23,6 +25,8 @@ export const leagueDetailsRoute = createRoute({
   loaderDeps: ({ search }) => ({ search }),
   loader: ({ context: { queryClient }, deps: { search } }) =>
     queryClient.query(leagueQueries.getLeague(search.query!, search.worldId!)),
+  pendingComponent: LeagueDetailsSkeleton,
+  pendingMs: 0,
   errorComponent: lazyRouteComponent(() => import('@/features/leagues/LeagueDetailsError')),
   component: lazyRouteComponent(() => import('@/features/leagues/LeagueDetails')),
 });
@@ -35,6 +39,8 @@ export const leaguesRankingRoute = createRoute({
   loaderDeps: ({ search }) => ({ search }),
   loader: ({ context: { queryClient }, deps: { search } }) =>
     queryClient.query(leagueQueries.getLeaguesRanking(search.worldId, search.sort)),
+  pendingComponent: RankingPageSkeleton,
+  pendingMs: 0,
   errorComponent: lazyRouteComponent(() => import('@/components/ErrorFallback')),
   component: lazyRouteComponent(() => import('@/features/leagues/LeaguesRanking')),
 });
