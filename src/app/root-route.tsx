@@ -1,4 +1,4 @@
-import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
+import { createRootRouteWithContext, lazyRouteComponent, Outlet } from '@tanstack/react-router';
 import Header from '@/components/layout/header/Header.tsx';
 import Footer from '@/components/layout/footer/Footer';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -11,6 +11,7 @@ type RouterContext = {
 };
 
 export const rootRoute = createRootRouteWithContext<RouterContext>()({
+  notFoundComponent: lazyRouteComponent(() => import('@/components/NotFound')),
   component: () => (
     <ThemeProvider
       defaultTheme="system"

@@ -10,6 +10,11 @@ const de: typeof en = {
       home: 'Zur Startseite',
       reload: 'Seite neu laden',
     },
+    notFound: {
+      title: 'Seite nicht gefunden - DCUOBot',
+      body: 'Die gesuchte Seite existiert nicht oder wurde verschoben.',
+      home: 'Zur Startseite',
+    },
   },
   header: {
     appName: 'DCUOBot',

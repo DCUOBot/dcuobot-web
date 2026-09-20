@@ -8,6 +8,11 @@ const en = {
       home: 'Go home',
       reload: 'Reload page',
     },
+    notFound: {
+      title: 'Page not found - DCUOBot',
+      body: 'The page you are looking for does not exist or may have been moved.',
+      home: 'Go home',
+    },
   },
   header: {
     appName: 'DCUOBot',
