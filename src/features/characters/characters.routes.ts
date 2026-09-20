@@ -4,6 +4,8 @@ import { loadFeatureLocale } from '@/i18n/loadFeatureLocale';
 import { characterQueries } from '@/features/characters/queries';
 import { requireEntitySearch, validateEntitySearch } from '@/lib/entity-search-route';
 import { validateRankingSearch } from '@/lib/ranking-search-route';
+import CharacterDetailsSkeleton from '@/features/characters/CharacterDetailsSkeleton';
+import RankingPageSkeleton from '@/components/RankingPageSkeleton';
 
 export const charactersRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -23,6 +25,8 @@ export const characterDetailsRoute = createRoute({
   loaderDeps: ({ search }) => ({ search }),
   loader: ({ context: { queryClient }, deps: { search } }) =>
     queryClient.query(characterQueries.getCharacter(search.query!, search.worldId!)),
+  pendingComponent: CharacterDetailsSkeleton,
+  pendingMs: 0,
   errorComponent: lazyRouteComponent(() => import('@/features/characters/CharacterDetailsError')),
   component: lazyRouteComponent(() => import('@/features/characters/CharacterDetails')),
 });
@@ -35,6 +39,8 @@ export const charactersRankingRoute = createRoute({
   loaderDeps: ({ search }) => ({ search }),
   loader: ({ context: { queryClient }, deps: { search } }) =>
     queryClient.query(characterQueries.getCharactersRanking(search.worldId, search.sort)),
+  pendingComponent: RankingPageSkeleton,
+  pendingMs: 0,
   errorComponent: lazyRouteComponent(() => import('@/components/ErrorFallback')),
   component: lazyRouteComponent(() => import('@/features/characters/CharactersRanking')),
 });
