@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/DCUOBot/dcuobot-web/compare/dcuobot-web-v1.0.0...dcuobot-web-v1.1.0) (2026-09-20)
+
+
+### Features
+
+* add HTML minification to build process with `html-minifier-terser` ([#65](https://github.com/DCUOBot/dcuobot-web/issues/65)) ([bbc2ec9](https://github.com/DCUOBot/dcuobot-web/commit/bbc2ec9d74541da0f98d4916714b899773fd28bd))
+
 ## 1.0.0 (2026-09-20)
 
 
