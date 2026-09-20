@@ -4,12 +4,47 @@ import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
 
 const linkClassName = 'text-primary underline underline-offset-4 hover:no-underline';
 
+type Translate = (key: string) => string;
+
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="mt-8">
       <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">{title}</h2>
       <div className="mt-2 space-y-3 text-muted-foreground">{children}</div>
     </section>
+  );
+}
+
+function BulletList({ t, base, items }: { t: Translate; base: string; items: string[] }) {
+  return (
+    <ul className="list-disc pl-6 space-y-1">
+      {items.map((item) => (
+        <li key={item}>{t(`${base}.${item}`)}</li>
+      ))}
+    </ul>
+  );
+}
+
+function MailtoLine({
+  t,
+  labelKey,
+  emailKey,
+}: {
+  t: Translate;
+  labelKey: string;
+  emailKey: string;
+}) {
+  const email = t(emailKey);
+  return (
+    <>
+      <strong>{t(labelKey)}</strong>{' '}
+      <a
+        href={`mailto:${email}`}
+        className={linkClassName}
+      >
+        {email}
+      </a>
+    </>
   );
 }
 
@@ -37,13 +72,11 @@ export default function Privacy() {
           <p>
             <strong>{t('privacy.controller.nameLabel')}</strong> {t('privacy.controller.name')}
             <br />
-            <strong>{t('privacy.controller.contactLabel')}</strong>{' '}
-            <a
-              href={`mailto:${t('privacy.controller.email')}`}
-              className={linkClassName}
-            >
-              {t('privacy.controller.email')}
-            </a>
+            <MailtoLine
+              t={t}
+              labelKey="privacy.controller.contactLabel"
+              emailKey="privacy.controller.email"
+            />
           </p>
           <p>{t('privacy.controller.discord')}</p>
         </Section>
@@ -56,12 +89,11 @@ export default function Privacy() {
               {t('privacy.dataWeCollect.serverLogs.title')}
             </h3>
             <p>{t('privacy.dataWeCollect.serverLogs.body')}</p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>{t('privacy.dataWeCollect.serverLogs.items.ipAddress')}</li>
-              <li>{t('privacy.dataWeCollect.serverLogs.items.browser')}</li>
-              <li>{t('privacy.dataWeCollect.serverLogs.items.referrer')}</li>
-              <li>{t('privacy.dataWeCollect.serverLogs.items.requestedPage')}</li>
-            </ul>
+            <BulletList
+              t={t}
+              base="privacy.dataWeCollect.serverLogs.items"
+              items={['ipAddress', 'browser', 'referrer', 'requestedPage']}
+            />
             <p>{t('privacy.dataWeCollect.serverLogs.purpose')}</p>
             <p className="text-sm">{t('privacy.dataWeCollect.serverLogs.legalBasis')}</p>
           </div>
@@ -79,10 +111,11 @@ export default function Privacy() {
               {t('privacy.dataWeCollect.localStorage.title')}
             </h3>
             <p>{t('privacy.dataWeCollect.localStorage.body')}</p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>{t('privacy.dataWeCollect.localStorage.items.theme')}</li>
-              <li>{t('privacy.dataWeCollect.localStorage.items.language')}</li>
-            </ul>
+            <BulletList
+              t={t}
+              base="privacy.dataWeCollect.localStorage.items"
+              items={['theme', 'language']}
+            />
             <p>{t('privacy.dataWeCollect.localStorage.purpose')}</p>
           </div>
 
@@ -108,19 +141,20 @@ export default function Privacy() {
 
         <Section title={t('privacy.thirdParties.title')}>
           <p>{t('privacy.thirdParties.intro')}</p>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>{t('privacy.thirdParties.items.hosting')}</li>
-            <li>{t('privacy.thirdParties.items.discord')}</li>
-          </ul>
+          <BulletList
+            t={t}
+            base="privacy.thirdParties.items"
+            items={['hosting', 'discord']}
+          />
           <p>{t('privacy.thirdParties.outro')}</p>
         </Section>
 
         <Section title={t('privacy.retention.title')}>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>{t('privacy.retention.items.logs')}</li>
-            <li>{t('privacy.retention.items.localStorage')}</li>
-            <li>{t('privacy.retention.items.bot')}</li>
-          </ul>
+          <BulletList
+            t={t}
+            base="privacy.retention.items"
+            items={['logs', 'localStorage', 'bot']}
+          />
         </Section>
 
         <Section title={t('privacy.security.title')}>
@@ -129,15 +163,19 @@ export default function Privacy() {
 
         <Section title={t('privacy.rights.title')}>
           <p>{t('privacy.rights.intro')}</p>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>{t('privacy.rights.items.access')}</li>
-            <li>{t('privacy.rights.items.rectification')}</li>
-            <li>{t('privacy.rights.items.erasure')}</li>
-            <li>{t('privacy.rights.items.restriction')}</li>
-            <li>{t('privacy.rights.items.portability')}</li>
-            <li>{t('privacy.rights.items.objection')}</li>
-            <li>{t('privacy.rights.items.complaint')}</li>
-          </ul>
+          <BulletList
+            t={t}
+            base="privacy.rights.items"
+            items={[
+              'access',
+              'rectification',
+              'erasure',
+              'restriction',
+              'portability',
+              'objection',
+              'complaint',
+            ]}
+          />
           <p>{t('privacy.rights.outro')}</p>
         </Section>
 
@@ -152,13 +190,11 @@ export default function Privacy() {
         <Section title={t('privacy.contact.title')}>
           <p>{t('privacy.contact.body')}</p>
           <p>
-            <strong>{t('privacy.contact.emailLabel')}</strong>{' '}
-            <a
-              href={`mailto:${t('privacy.contact.email')}`}
-              className={linkClassName}
-            >
-              {t('privacy.contact.email')}
-            </a>
+            <MailtoLine
+              t={t}
+              labelKey="privacy.contact.emailLabel"
+              emailKey="privacy.contact.email"
+            />
           </p>
           <p>
             {t('privacy.contact.discord')} (
