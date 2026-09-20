@@ -60,7 +60,7 @@ describe('rootRoute', () => {
   it('renders the not-found page within the shared layout for an unmatched path', async () => {
     renderApp('/this-page-does-not-exist');
 
-    expect(await screen.findByText('Page not found')).toBeInTheDocument();
+    expect(await screen.findByText('Page not found - DCUOBot')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Go home' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('banner')).toBeInTheDocument();
     expect(screen.getByRole('contentinfo')).toBeInTheDocument();

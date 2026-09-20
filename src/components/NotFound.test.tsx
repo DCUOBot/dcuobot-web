@@ -58,7 +58,9 @@ describe('NotFound', () => {
 
     expect(await screen.findByTestId('route-marker')).toBeInTheDocument();
     expect(screen.getByText('404')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 1, name: 'Page not found' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Page not found - DCUOBot' }),
+    ).toBeInTheDocument();
     expect(
       screen.getByText('The page you are looking for does not exist or may have been moved.'),
     ).toBeInTheDocument();
