@@ -1,5 +1,6 @@
 import type { Character } from '@/features/characters/models/character';
 import { useTranslation } from 'react-i18next';
+import RankingStat from '@/components/RankingStat';
 
 type Props = {
   character: Character;
@@ -82,60 +83,28 @@ export default function CharacterSummaryStats({ character, sort }: Props) {
         (displayFourthSortParam() ? 'lg:grid-cols-4' : 'lg:grid-cols-3')
       }
     >
-      <div className="flex justify-between items-center lg:flex-col lg:justify-start lg:items-start">
-        <span
-          className={
-            'text-xl font-semibold ' + (sort !== 'skill_points' ? 'text-muted-foreground' : '')
-          }
-        >
-          {character.skill_points.toLocaleString(i18n.language)}
-        </span>
-        <div className="order-first lg:order-last">
-          <span className={sort !== 'skill_points' ? 'text-muted-foreground' : ''}>
-            {t('character.ranking.sort.skillPoints')}
-          </span>
-        </div>
-      </div>
-
-      <div className="flex justify-between items-center lg:flex-col lg:justify-start lg:items-start">
-        <span
-          className={
-            'text-xl font-semibold ' + (sort !== 'combat_rating' ? 'text-muted-foreground' : '')
-          }
-        >
-          {character.combat_rating.toLocaleString(i18n.language)}
-        </span>
-        <div className="order-first lg:order-last">
-          <span className={sort !== 'combat_rating' ? 'text-muted-foreground' : ''}>
-            {t('character.ranking.sort.combatRating')}
-          </span>
-        </div>
-      </div>
-
-      <div className="flex justify-between items-center lg:flex-col lg:justify-start lg:items-start">
-        <span
-          className={
-            'text-xl font-semibold ' + (sort !== 'pvp_combat_rating' ? 'text-muted-foreground' : '')
-          }
-        >
-          {character.pvp_combat_rating.toLocaleString(i18n.language)}
-        </span>
-        <div className="order-first lg:order-last">
-          <span className={sort !== 'pvp_combat_rating' ? 'text-muted-foreground' : ''}>
-            {t('character.ranking.sort.pvpCombatRating')}
-          </span>
-        </div>
-      </div>
+      <RankingStat
+        value={character.skill_points.toLocaleString(i18n.language)}
+        label={t('character.ranking.sort.skillPoints')}
+        active={sort === 'skill_points'}
+      />
+      <RankingStat
+        value={character.combat_rating.toLocaleString(i18n.language)}
+        label={t('character.ranking.sort.combatRating')}
+        active={sort === 'combat_rating'}
+      />
+      <RankingStat
+        value={character.pvp_combat_rating.toLocaleString(i18n.language)}
+        label={t('character.ranking.sort.pvpCombatRating')}
+        active={sort === 'pvp_combat_rating'}
+      />
 
       {displayFourthSortParam() ? (
-        <div className="flex justify-between items-center lg:flex-col lg:justify-start lg:items-start">
-          <span className="text-xl font-semibold">
-            {fourthStat().toLocaleString(i18n.language)}
-          </span>
-          <div className="order-first lg:order-last">
-            <span>{fourthStatLabel()}</span>
-          </div>
-        </div>
+        <RankingStat
+          value={fourthStat().toLocaleString(i18n.language)}
+          label={fourthStatLabel()}
+          active
+        />
       ) : null}
     </div>
   );

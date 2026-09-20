@@ -2,7 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 
 export function useChunkedList<T>(items: T[], chunkSize: number) {
   const [visibleCount, setVisibleCount] = useState(chunkSize);
+  const [prevItems, setPrevItems] = useState(items);
   const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  if (items !== prevItems) {
+    setPrevItems(items);
+    setVisibleCount(chunkSize);
+  }
 
   useEffect(() => {
     const target = loadMoreRef.current;

@@ -6,8 +6,9 @@ import CharacterExampleEmbed from '@/features/home/components/CharacterExampleEm
 import LeagueExampleEmbed from '@/features/home/components/LeagueExampleEmbed';
 import TopCharactersExampleEmbed from '@/features/home/components/TopCharactersExampleEmbed';
 import TopLeaguesExampleEmbed from '@/features/home/components/TopLeaguesExampleEmbed';
-import { buildInviteUrl } from '@/lib/bot-invite.ts';
-import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
+import { buildInviteUrl } from '@/lib/bot-invite';
+import { config } from '@/lib/config';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta';
 
 export default function Home() {
   const { t } = useTranslation('home');
@@ -40,7 +41,7 @@ export default function Home() {
             {t('home.commands')}
           </RouterLinkButton>
           <LinkButton
-            href="https://dcuo.bot/api/docs"
+            href={config.apiDocsUrl}
             target="_blank"
             size="lg"
             variant="secondary"

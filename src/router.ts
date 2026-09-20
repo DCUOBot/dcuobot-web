@@ -1,4 +1,4 @@
-import { rootRoute } from '@/app/root-route.tsx';
+import { rootRoute } from '@/app/root-route';
 import { createRouter } from '@tanstack/react-router';
 import { commandsRoutes } from '@/features/commands/commands.routes';
 import { homeRoutes } from '@/features/home/home.routes';

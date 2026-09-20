@@ -1,6 +1,6 @@
 import type { Character } from '@/features/characters/models/character';
 import { useTranslation } from 'react-i18next';
-import { Card, CardContent } from '@/components/ui/card';
+import StatList from '@/components/StatList';
 
 type Props = {
   character: Character;
@@ -9,48 +9,25 @@ type Props = {
 export default function CharacterStats({ character }: Props) {
   const { t, i18n } = useTranslation('characters');
 
+  const stat = (key: keyof Character['stats'], labelKey: string) => ({
+    key,
+    label: t(labelKey),
+    value: <strong>{character.stats[key].toLocaleString(i18n.language)}</strong>,
+  });
+
   return (
-    <Card>
-      <CardContent>
-        <ul className="space-y-4">
-          <li className="flex justify-between">
-            <span>{t('character.details.health')}</span>
-            <strong>{character.stats.health.toLocaleString(i18n.language)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.power')}</span>
-            <strong>{character.stats.power.toLocaleString(i18n.language)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.might')}</span>
-            <strong>{character.stats.might.toLocaleString(i18n.language)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.precision')}</span>
-            <strong>{character.stats.precision.toLocaleString(i18n.language)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.restoration')}</span>
-            <strong>{character.stats.restoration.toLocaleString(i18n.language)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.vitalization')}</span>
-            <strong>{character.stats.vitalization.toLocaleString(i18n.language)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.dominance')}</span>
-            <strong>{character.stats.dominance.toLocaleString(i18n.language)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.defense')}</span>
-            <strong>{character.stats.defense.toLocaleString(i18n.language)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.toughness')}</span>
-            <strong>{character.stats.toughness.toLocaleString(i18n.language)}</strong>
-          </li>
-        </ul>
-      </CardContent>
-    </Card>
+    <StatList
+      items={[
+        stat('health', 'character.details.health'),
+        stat('power', 'character.details.power'),
+        stat('might', 'character.details.might'),
+        stat('precision', 'character.details.precision'),
+        stat('restoration', 'character.details.restoration'),
+        stat('vitalization', 'character.details.vitalization'),
+        stat('dominance', 'character.details.dominance'),
+        stat('defense', 'character.details.defense'),
+        stat('toughness', 'character.details.toughness'),
+      ]}
+    />
   );
 }

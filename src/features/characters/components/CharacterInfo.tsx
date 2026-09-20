@@ -1,5 +1,5 @@
 import type { Character } from '@/features/characters/models/character';
-import { Card, CardContent } from '@/components/ui/card';
+import StatList from '@/components/StatList';
 import { useTranslation } from 'react-i18next';
 import { formatWorldId } from '@/lib/world-id-format';
 import { Link } from '@tanstack/react-router';
@@ -12,56 +12,63 @@ export default function CharacterInfo({ character }: Props) {
   const { t, i18n } = useTranslation('characters');
 
   return (
-    <Card>
-      <CardContent>
-        <ul className="space-y-4">
-          <li className="flex justify-between">
-            <span>{t('character.details.name')}</span>
-            <strong>{character.name}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.server')}</span>
-            <strong>{formatWorldId(character.world_id)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.personality')}</span>
-            <strong>{character.personality}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.powerSet')}</span>
-            <strong>{character.power_type}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.movementMode')}</span>
-            <strong>{character.movement_mode}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.skillPoints')}</span>
-            <strong>{character.skill_points.toLocaleString(i18n.language)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.combatRating')}</span>
-            <strong>{character.combat_rating.toLocaleString(i18n.language)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.pvpCombatRating')}</span>
-            <strong>{character.pvp_combat_rating.toLocaleString(i18n.language)}</strong>
-          </li>
-          <li className="flex justify-between">
-            <span>{t('character.details.league')}</span>
-            {character.guild ? (
-              <Link
-                to="/leagues"
-                search={{ query: character.guild.name, worldId: Number(character.world_id) }}
-              >
-                <strong className="underline">{character.guild.name}</strong>
-              </Link>
-            ) : (
-              <span className="text-muted-foreground">&mdash;</span>
-            )}
-          </li>
-        </ul>
-      </CardContent>
-    </Card>
+    <StatList
+      items={[
+        {
+          key: 'name',
+          label: t('character.details.name'),
+          value: <strong>{character.name}</strong>,
+        },
+        {
+          key: 'server',
+          label: t('character.details.server'),
+          value: <strong>{formatWorldId(character.world_id)}</strong>,
+        },
+        {
+          key: 'personality',
+          label: t('character.details.personality'),
+          value: <strong>{character.personality}</strong>,
+        },
+        {
+          key: 'powerSet',
+          label: t('character.details.powerSet'),
+          value: <strong>{character.power_type}</strong>,
+        },
+        {
+          key: 'movementMode',
+          label: t('character.details.movementMode'),
+          value: <strong>{character.movement_mode}</strong>,
+        },
+        {
+          key: 'skillPoints',
+          label: t('character.details.skillPoints'),
+          value: <strong>{character.skill_points.toLocaleString(i18n.language)}</strong>,
+        },
+        {
+          key: 'combatRating',
+          label: t('character.details.combatRating'),
+          value: <strong>{character.combat_rating.toLocaleString(i18n.language)}</strong>,
+        },
+        {
+          key: 'pvpCombatRating',
+          label: t('character.details.pvpCombatRating'),
+          value: <strong>{character.pvp_combat_rating.toLocaleString(i18n.language)}</strong>,
+        },
+        {
+          key: 'league',
+          label: t('character.details.league'),
+          value: character.guild ? (
+            <Link
+              to="/leagues"
+              search={{ query: character.guild.name, worldId: Number(character.world_id) }}
+            >
+              <strong className="underline">{character.guild.name}</strong>
+            </Link>
+          ) : (
+            <span className="text-muted-foreground">&mdash;</span>
+          ),
+        },
+      ]}
+    />
   );
 }

@@ -5,7 +5,7 @@ import { leagueQueries } from '@/features/leagues/queries';
 import LeaguesRankingForm from '@/features/leagues/components/LeaguesRankingForm';
 import LeagueSummary from '@/features/leagues/components/LeagueSummary';
 import RankingPage from '@/components/RankingPage';
-import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta';
 
 export default function LeaguesRanking() {
   const search = leaguesRankingRoute.useSearch();
@@ -25,7 +25,7 @@ export default function LeaguesRanking() {
       items={leagues}
       renderItem={(league, index) => (
         <LeagueSummary
-          key={index}
+          key={`${league.name}-${league.world_id}`}
           league={league}
           index={index}
           sort={search.sort}

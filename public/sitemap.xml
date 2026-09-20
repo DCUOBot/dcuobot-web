@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://dcuo.bot/</loc>
+  </url>
+  <url>
+    <loc>https://dcuo.bot/commands</loc>
+  </url>
+  <url>
+    <loc>https://dcuo.bot/characters/ranking</loc>
+  </url>
+  <url>
+    <loc>https://dcuo.bot/leagues/ranking</loc>
+  </url>
+  <url>
+    <loc>https://dcuo.bot/server-status</loc>
+  </url>
+  <url>
+    <loc>https://dcuo.bot/privacy</loc>
+  </url>
+</urlset>

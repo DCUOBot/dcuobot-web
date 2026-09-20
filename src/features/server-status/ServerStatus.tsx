@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { serverStatusQueries } from '@/features/server-status/queries.ts';
-import GameServerCard from '@/features/server-status/components/GameServerCard.tsx';
-import { useDocumentTitle, useMetaDescription } from '@/lib/meta.ts';
+import { serverStatusQueries } from '@/features/server-status/queries';
+import GameServerCard from '@/features/server-status/components/GameServerCard';
+import { useDocumentTitle, useMetaDescription } from '@/lib/meta';
 
 export default function ServerStatus() {
   const { t } = useTranslation('serverStatus');

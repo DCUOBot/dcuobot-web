@@ -1,7 +1,7 @@
 import { createRoute, lazyRouteComponent } from '@tanstack/react-router';
 import { rootRoute } from '@/app/root-route';
 import { loadFeatureLocale } from '@/i18n/loadFeatureLocale';
-import { serverStatusQueries } from '@/features/server-status/queries.ts';
+import { serverStatusQueries } from '@/features/server-status/queries';
 import ServerStatusSkeleton from '@/features/server-status/ServerStatusSkeleton';
 
 export const serverStatusRoute = createRoute({

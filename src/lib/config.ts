@@ -1,5 +1,9 @@
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL ?? 'https://dcuo.bot/api/v1/census';
+
 export const config = {
-  apiBaseUrl: 'https://dcuo.bot/api/v1/census',
+  apiBaseUrl,
+  apiDocsUrl: `${new URL(apiBaseUrl).origin}/api/docs`,
+  discordInviteUrl: 'https://discord.gg/XbaFwtTgMa',
   botInvite: {
     baseUrl: 'https://discord.com/api/oauth2/authorize',
     clientId: '675436844758073364',

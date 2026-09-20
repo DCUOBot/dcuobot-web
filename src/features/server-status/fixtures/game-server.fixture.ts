@@ -1,4 +1,4 @@
-import type { GameServer } from '@/features/server-status/models/game-server.ts';
+import type { GameServer } from '@/features/server-status/models/game-server';
 
 export function createGameServer(overrides: Partial<GameServer> = {}): GameServer {
   return {

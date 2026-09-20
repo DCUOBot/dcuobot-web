@@ -1,6 +1,7 @@
 import type { Character } from '@/features/characters/models/character';
 import { useTranslation } from 'react-i18next';
 import ProtectedImage from '@/components/ProtectedImage';
+import { ENTITY_PORTRAIT_SIZE } from '@/lib/image-sizes';
 
 type Props = {
   character: Character;
@@ -13,8 +14,7 @@ export default function CharacterImage({ character }: Props) {
     <ProtectedImage
       src={character.image.url}
       alt={t('character.details.imageAlt')}
-      width={246}
-      height={394}
+      {...ENTITY_PORTRAIT_SIZE}
       className="select-none drag-none rounded-4xl"
     />
   );

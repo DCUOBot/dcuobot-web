@@ -10,6 +10,7 @@ export const privacyRoute = createRoute({
       en: () => import('@/features/privacy/locales/en'),
       de: () => import('@/features/privacy/locales/de'),
     }),
+  errorComponent: lazyRouteComponent(() => import('@/components/ErrorFallback')),
   component: lazyRouteComponent(() => import('@/features/privacy/Privacy')),
 });
 
