@@ -9,7 +9,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && npm run minify-html",
+    "minify-html": "html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o dist/index.html dist/index.html",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "format": "prettier --write .",
@@ -71,6 +72,7 @@
     "@vitejs/plugin-react": "^6.1.1",
     "@vitest/coverage-v8": "^5.0.0",
     "babel-plugin-react-compiler": "^1.0.0",
+    "html-minifier-terser": "^7.2.0",
     "husky": "^9.1.7",
     "jsdom": "^30.0.1",
     "lint-staged": "^17.5.1",
