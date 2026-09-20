@@ -4,6 +4,12 @@ const de: typeof en = {
   common: {
     error: 'Ein Fehler ist aufgetreten, bitte versuche es später erneut.',
     loading: 'Wird geladen…',
+    unexpectedError: {
+      title: 'Etwas ist schiefgelaufen',
+      body: 'Ein unerwarteter Fehler ist aufgetreten. Lade die Seite neu oder kehre zur Startseite zurück.',
+      home: 'Zur Startseite',
+      reload: 'Seite neu laden',
+    },
   },
   header: {
     appName: 'DCUOBot',

@@ -2,6 +2,12 @@ const en = {
   common: {
     error: 'An error occurred, please try again later.',
     loading: 'Loading…',
+    unexpectedError: {
+      title: 'Something went wrong',
+      body: 'An unexpected error occurred. Try reloading the page, or head back to the home page.',
+      home: 'Go home',
+      reload: 'Reload page',
+    },
   },
   header: {
     appName: 'DCUOBot',
