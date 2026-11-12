@@ -66,7 +66,7 @@ const de: typeof en = {
     },
   },
   footer: {
-    copyright: '&copy; DCUOBot {{currentYear}}. Alle Rechte vorbehalten.',
+    copyright: 'DCUOBot {{currentYear}}. Alle Rechte vorbehalten.',
     disclaimer1:
       'Diese App steht in keiner Verbindung zu DC Universe Online und wird davon weder ' +
       'unterstützt noch anderweitig assoziiert.',
