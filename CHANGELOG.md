@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/DCUOBot/dcuobot-web/compare/dcuobot-web-v1.1.0...dcuobot-web-v1.1.1) (2026-11-12)
+
+
+### Bug Fixes
+
+* remove copyright symbol from German footer ([#85](https://github.com/DCUOBot/dcuobot-web/issues/85)) ([581e5a1](https://github.com/DCUOBot/dcuobot-web/commit/581e5a1b8e9170c58e88da1e2e1c25657552c5ad))
+
 ## [1.1.0](https://github.com/DCUOBot/dcuobot-web/compare/dcuobot-web-v1.0.0...dcuobot-web-v1.1.0) (2026-09-20)
 
 
